@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Fackla</string>
+
+    <string name="mapbox_access_token" translatable="false">pk.eyJ1IjoicGhvcWUiLCJhIjoiY2tua2V1dm1rMGFnODJ1bzA4aDAzbzVjNiJ9.qhP4X_XpdzIPsHawKbJAKQ</string>
+</resources>
