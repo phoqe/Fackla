@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.phoqe.fackla"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -47,6 +47,7 @@ dependencies {
 
     implementation "com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.1"
     implementation "com.mapbox.mapboxsdk:mapbox-android-plugin-localization-v9:0.12.0"
+    implementation "com.mapbox.search:mapbox-search-android:1.0.0-beta.11"
 
     testImplementation "junit:junit:4.+"
 
