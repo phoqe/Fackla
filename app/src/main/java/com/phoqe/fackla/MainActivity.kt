@@ -1,23 +1,22 @@
 package com.phoqe.fackla
 
 import android.annotation.SuppressLint
+import android.location.Location
 import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.view.View
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.mapbox.android.core.permissions.PermissionsManager
-import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
 import com.mapbox.mapboxsdk.location.LocationComponentOptions
+import com.mapbox.mapboxsdk.location.LocationUpdate
 import com.mapbox.mapboxsdk.location.modes.CameraMode
 import com.mapbox.mapboxsdk.location.modes.RenderMode
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.localization.LocalizationPlugin
-import com.mapbox.search.*
-import com.mapbox.search.result.SearchResult
 import com.phoqe.fackla.databinding.ActivityMainBinding
 import com.phoqe.fackla.managers.FakeLocationManager
 import timber.log.Timber
@@ -25,11 +24,11 @@ import java.lang.NullPointerException
 
 class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLongClickListener {
     private var permsMgr: PermissionsManager = PermissionsManager(this)
+    private var lastLocBeforeFaking: Location? = null
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var map: MapboxMap
     private lateinit var locMgr: LocationManager
-    private lateinit var revGeoEngine: ReverseGeocodingSearchEngine
     private lateinit var fakeLocMgr: FakeLocationManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,10 +36,17 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         locMgr = getSystemService(LOCATION_SERVICE) as LocationManager
-        revGeoEngine = MapboxSearchSdk.createReverseGeocodingSearchEngine()
         fakeLocMgr = FakeLocationManager(this)
 
         setContentView(binding.root)
+
+        binding.efabStopFakingLocation.setOnClickListener {
+            fakeLocMgr.stop {
+                lastLocBeforeFaking?.let { loc -> updateLocationPostStateChange(loc) }
+
+                binding.efabStopFakingLocation.visibility = View.GONE
+            }
+        }
 
         configMapView(savedInstanceState)
     }
@@ -100,39 +106,12 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
         }
     }
 
-    private fun showLocSnackbar(point: LatLng) {
-        val opts = ReverseGeoOptions(
-                center = Point.fromLngLat(point.latitude, point.longitude),
-                limit = 1
-        )
+    private fun updateLocationPostStateChange(loc: Location) {
+        val locUpd = LocationUpdate.Builder()
+                .location(loc)
+                .build()
 
-        revGeoEngine.search(opts, object : SearchCallback {
-            override fun onError(e: Exception) {
-                Snackbar.make(
-                        binding.mapView,
-                        "Latitude: ${point.latitude}\nLongitude: ${point.longitude}",
-                        Snackbar.LENGTH_LONG
-                ).show()
-            }
-
-            override fun onResults(results: List<SearchResult>, responseInfo: ResponseInfo) {
-                if (results.isEmpty()) {
-                    Snackbar.make(
-                            binding.mapView,
-                            "Latitude: ${point.latitude}\nLongitude: ${point.longitude}",
-                            Snackbar.LENGTH_LONG
-                    ).show()
-
-                    return
-                }
-
-                Snackbar.make(
-                        binding.mapView,
-                        "Set fake location to ${results.first().name}.",
-                        Snackbar.LENGTH_LONG
-                ).show()
-            }
-        })
+        map.locationComponent.forceLocationUpdate(locUpd)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -150,8 +129,12 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
     }
 
     override fun onMapLongClick(point: LatLng): Boolean {
-        fakeLocMgr.start(point) {
-            showLocSnackbar(point)
+        lastLocBeforeFaking = map.locationComponent.lastKnownLocation
+
+        fakeLocMgr.start(point) { loc ->
+            updateLocationPostStateChange(loc)
+
+            binding.efabStopFakingLocation.visibility = View.VISIBLE
         }
 
         return true

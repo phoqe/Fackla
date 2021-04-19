@@ -19,7 +19,7 @@ class FakeLocationManager(val context: Context) {
      * Starts the fake location manager by creating test providers and fake locations to be set using
      * the created providers. The [point] is used when creating the fake location.
      */
-    fun start(point: LatLng, callback: () -> Unit) {
+    fun start(point: LatLng, callback: (Location) -> Unit) {
         Timber.v("start")
 
         setTestProviders()
@@ -29,19 +29,21 @@ class FakeLocationManager(val context: Context) {
             locMgr.setTestProviderEnabled(provider, true)
         }
 
-        callback()
+        callback(createFakeLocation(TEST_PROVIDERS.first(), point))
     }
 
     /**
      * Stops the fake location manager by disabling all test providers and removing them.
      */
-    fun stop() {
+    fun stop(callback: () -> Unit) {
         Timber.v("stop")
 
         for (provider in TEST_PROVIDERS) {
             locMgr.setTestProviderEnabled(provider, false)
             locMgr.removeTestProvider(provider)
         }
+
+        callback()
     }
 
     /**
