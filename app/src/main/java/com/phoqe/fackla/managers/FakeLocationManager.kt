@@ -7,10 +7,10 @@ import android.os.SystemClock
 import com.mapbox.mapboxsdk.geometry.LatLng
 import timber.log.Timber
 
-class FakeLocationManager(val context: Context) {
-    private val TEST_PROVIDERS = arrayOf(LocationManager.GPS_PROVIDER, LocationManager.NETWORK_PROVIDER)
-    private val POWER_USAGE = 1 // `POWER_USAGE_LOW`
-    private val ACCURACY = 1 // `ACCURACY_FINE`
+class FakeLocationManager(context: Context) {
+    private val testProviders = arrayOf(LocationManager.GPS_PROVIDER, LocationManager.NETWORK_PROVIDER)
+    private val powerUsage = 1 // `POWER_USAGE_LOW`
+    private val accuracy = 1 // `ACCURACY_FINE`
 
     private val locMgr = context.getSystemService(Context.LOCATION_SERVICE) as
             LocationManager
@@ -24,12 +24,12 @@ class FakeLocationManager(val context: Context) {
 
         setTestProviders()
 
-        for (provider in TEST_PROVIDERS) {
+        for (provider in testProviders) {
             locMgr.setTestProviderLocation(provider, createFakeLocation(provider, point))
             locMgr.setTestProviderEnabled(provider, true)
         }
 
-        callback(createFakeLocation(TEST_PROVIDERS.first(), point))
+        callback(createFakeLocation(testProviders.first(), point))
     }
 
     /**
@@ -38,7 +38,7 @@ class FakeLocationManager(val context: Context) {
     fun stop(callback: () -> Unit) {
         Timber.v("stop")
 
-        for (provider in TEST_PROVIDERS) {
+        for (provider in testProviders) {
             locMgr.setTestProviderEnabled(provider, false)
             locMgr.removeTestProvider(provider)
         }
@@ -53,7 +53,7 @@ class FakeLocationManager(val context: Context) {
     private fun setTestProviders() {
         Timber.v("addTestProvider")
 
-        for (provider in TEST_PROVIDERS) {
+        for (provider in testProviders) {
             locMgr.removeTestProvider(provider)
 
             locMgr.addTestProvider(
@@ -65,8 +65,8 @@ class FakeLocationManager(val context: Context) {
                     false,
                     false,
                     false,
-                    POWER_USAGE,
-                    ACCURACY
+                    powerUsage,
+                    accuracy
             )
         }
     }
@@ -86,7 +86,7 @@ class FakeLocationManager(val context: Context) {
         loc.altitude = point.altitude
 
         loc.time = System.currentTimeMillis()
-        loc.accuracy = ACCURACY.toFloat()
+        loc.accuracy = accuracy.toFloat()
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
             loc.elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos()

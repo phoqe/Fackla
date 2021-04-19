@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Fackla</string>
 
+    <string name="fake_location_channel_id" translatable="false">fake_location</string>
+
+    <string name="fake_location_channel_name">Fake Location</string>
+    <string name="fake_location_channel_description">This type of notification allows Fackla to function in other apps.</string>
+
     <string name="mapbox_access_token" translatable="false">pk.eyJ1IjoicGhvcWUiLCJhIjoiY2tua2V1dm1rMGFnODJ1bzA4aDAzbzVjNiJ9.qhP4X_XpdzIPsHawKbJAKQ</string>
     <string name="on_explanation_needed_toast_text">Allow access to show your location on the map.</string>
     <string name="on_permission_result_not_granted_toast_text">Your location will not be shown.</string>
