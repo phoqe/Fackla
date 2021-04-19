@@ -1,5 +1,6 @@
 package com.phoqe.fackla.registers
 
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -9,7 +10,7 @@ import androidx.annotation.RequiresApi
 import com.phoqe.fackla.R
 import timber.log.Timber
 
-class NotificationRegister(val context: Context) {
+class NotificationRegister(private val context: Context) {
     private val manager = context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
     init {
@@ -38,10 +39,11 @@ class NotificationRegister(val context: Context) {
         val channel = NotificationChannel(
             context.getString(R.string.fake_location_channel_id),
             context.getString(R.string.fake_location_channel_name),
-            NotificationManager.IMPORTANCE_DEFAULT
+            NotificationManager.IMPORTANCE_HIGH
         )
 
         channel.description = context.getString(R.string.fake_location_channel_description)
+        channel.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
 
         manager.createNotificationChannel(channel)
     }

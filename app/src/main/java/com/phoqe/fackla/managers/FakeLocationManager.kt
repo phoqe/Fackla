@@ -1,17 +1,19 @@
 package com.phoqe.fackla.managers
 
 import android.content.Context
+import android.content.Intent
 import android.location.Location
 import android.location.LocationManager
 import android.os.SystemClock
 import com.mapbox.mapboxsdk.geometry.LatLng
+import com.phoqe.fackla.services.FakeLocationNotificationService
 import timber.log.Timber
 
-class FakeLocationManager(context: Context) {
+class FakeLocationManager(private val context: Context) {
     private val testProviders = arrayOf(LocationManager.GPS_PROVIDER, LocationManager.NETWORK_PROVIDER)
-    private val powerUsage = 1 // `POWER_USAGE_LOW`
-    private val accuracy = 1 // `ACCURACY_FINE`
-
+    private val powerUsage = 1 // POWER_USAGE_LOW
+    private val accuracy = 1 // ACCURACY_FINE
+    private val intent = Intent(context, FakeLocationNotificationService::class.java)
     private val locMgr = context.getSystemService(Context.LOCATION_SERVICE) as
             LocationManager
 
@@ -29,6 +31,12 @@ class FakeLocationManager(context: Context) {
             locMgr.setTestProviderEnabled(provider, true)
         }
 
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            context.startForegroundService(intent)
+        } else {
+            context.startService(intent)
+        }
+
         callback(createFakeLocation(testProviders.first(), point))
     }
 
@@ -42,6 +50,8 @@ class FakeLocationManager(context: Context) {
             locMgr.setTestProviderEnabled(provider, false)
             locMgr.removeTestProvider(provider)
         }
+
+        context.stopService(intent)
 
         callback()
     }

@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">Fackla</string>
 
-    <string name="fake_location_channel_name">Falsk position</string>
+    <string name="fake_location_channel_name">Falsk plats</string>
     <string name="fake_location_channel_description">Denna notistyp möjliggör Fackla att fungera i andra appar.</string>
 
-    <string name="mapbox_access_token" translatable="false">pk.eyJ1IjoicGhvcWUiLCJhIjoiY2tua2V1dm1rMGFnODJ1bzA4aDAzbzVjNiJ9.qhP4X_XpdzIPsHawKbJAKQ</string>
-    <string name="on_explanation_needed_toast_text">Tillåt för att visa din position på kartan.</string>
-    <string name="on_permission_result_not_granted_toast_text">Din position kommer inte visas på kartan.</string>
-    <string name="efab_stop_faking_location_text">Sluta Fejka Position</string>
+    <string name="fake_location_notification_title">Falsk plats</string>
+    <string name="fake_location_notification_description">Din plats är förfalskad, även i andra appar.</string>
+    <string name="fake_location_notification_action_title">Sluta använda falsk plats</string>
+
+    <string name="on_explanation_needed_toast_text">Tillåt för att visa din plats på kartan.</string>
+    <string name="on_permission_result_not_granted_toast_text">Din plats kommer inte visas på kartan.</string>
+    <string name="efab_stop_faking_location_text">Sluta fejka plats</string>
 </resources>

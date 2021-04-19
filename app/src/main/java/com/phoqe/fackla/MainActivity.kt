@@ -1,6 +1,7 @@
 package com.phoqe.fackla
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.location.Location
 import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +20,7 @@ import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.localization.LocalizationPlugin
 import com.phoqe.fackla.databinding.ActivityMainBinding
 import com.phoqe.fackla.managers.FakeLocationManager
+import com.phoqe.fackla.services.FakeLocationNotificationService
 import timber.log.Timber
 import java.lang.NullPointerException
 
@@ -41,11 +43,7 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
         setContentView(binding.root)
 
         binding.efabStopFakingLocation.setOnClickListener {
-            fakeLocMgr.stop {
-                lastLocBeforeFaking?.let { loc -> updateLocationPostStateChange(loc) }
-
-                binding.efabStopFakingLocation.visibility = View.GONE
-            }
+            stopFakingLocation()
         }
 
         configMapView(savedInstanceState)
@@ -114,6 +112,24 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
         map.locationComponent.forceLocationUpdate(locUpd)
     }
 
+    private fun startFakingLocation(point: LatLng) {
+        lastLocBeforeFaking = map.locationComponent.lastKnownLocation
+
+        fakeLocMgr.start(point) { loc ->
+            updateLocationPostStateChange(loc)
+
+            binding.efabStopFakingLocation.visibility = View.VISIBLE
+        }
+    }
+
+    private fun stopFakingLocation() {
+        fakeLocMgr.stop {
+            lastLocBeforeFaking?.let { loc -> updateLocationPostStateChange(loc) }
+
+            binding.efabStopFakingLocation.visibility = View.GONE
+        }
+    }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         permsMgr.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
@@ -129,13 +145,7 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
     }
 
     override fun onMapLongClick(point: LatLng): Boolean {
-        lastLocBeforeFaking = map.locationComponent.lastKnownLocation
-
-        fakeLocMgr.start(point) { loc ->
-            updateLocationPostStateChange(loc)
-
-            binding.efabStopFakingLocation.visibility = View.VISIBLE
-        }
+        startFakingLocation(point)
 
         return true
     }
