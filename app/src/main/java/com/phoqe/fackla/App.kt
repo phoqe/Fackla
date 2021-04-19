@@ -6,7 +6,7 @@ import com.mapbox.search.MapboxSearchSdk
 import com.mapbox.search.location.DefaultLocationProvider
 import timber.log.Timber
 
-class FacklaApp: Application() {
+class App: Application() {
     override fun onCreate() {
         super.onCreate()
 

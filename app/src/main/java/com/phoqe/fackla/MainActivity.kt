@@ -1,18 +1,13 @@
 package com.phoqe.fackla
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.location.Location
 import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.SystemClock
-import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.geojson.Point
-import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
 import com.mapbox.mapboxsdk.location.LocationComponentOptions
@@ -22,7 +17,6 @@ import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.localization.LocalizationPlugin
 import com.mapbox.search.*
-import com.mapbox.search.location.DefaultLocationProvider
 import com.mapbox.search.result.SearchResult
 import com.phoqe.fackla.databinding.ActivityMainBinding
 import com.phoqe.fackla.managers.FakeLocationManager
@@ -106,12 +100,47 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
         }
     }
 
+    private fun showLocSnackbar(point: LatLng) {
+        val opts = ReverseGeoOptions(
+                center = Point.fromLngLat(point.latitude, point.longitude),
+                limit = 1
+        )
+
+        revGeoEngine.search(opts, object : SearchCallback {
+            override fun onError(e: Exception) {
+                Snackbar.make(
+                        binding.mapView,
+                        "Latitude: ${point.latitude}\nLongitude: ${point.longitude}",
+                        Snackbar.LENGTH_LONG
+                ).show()
+            }
+
+            override fun onResults(results: List<SearchResult>, responseInfo: ResponseInfo) {
+                if (results.isEmpty()) {
+                    Snackbar.make(
+                            binding.mapView,
+                            "Latitude: ${point.latitude}\nLongitude: ${point.longitude}",
+                            Snackbar.LENGTH_LONG
+                    ).show()
+
+                    return
+                }
+
+                Snackbar.make(
+                        binding.mapView,
+                        "Set fake location to ${results.first().name}.",
+                        Snackbar.LENGTH_LONG
+                ).show()
+            }
+        })
+    }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         permsMgr.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     override fun onExplanationNeeded(permissionsToExplain: MutableList<String>?) {
-        // Ignored
+
     }
 
     override fun onPermissionResult(granted: Boolean) {
@@ -122,38 +151,7 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
 
     override fun onMapLongClick(point: LatLng): Boolean {
         fakeLocMgr.start(point) {
-            val opts = ReverseGeoOptions(
-                    center = Point.fromLngLat(point.latitude, point.longitude),
-                    limit = 1
-            )
-
-            revGeoEngine.search(opts, object : SearchCallback {
-                override fun onError(e: Exception) {
-                    Snackbar.make(
-                            binding.mapView,
-                            "Latitude: ${point.latitude}\nLongitude: ${point.longitude}",
-                            Snackbar.LENGTH_LONG
-                    ).show()
-                }
-
-                override fun onResults(results: List<SearchResult>, responseInfo: ResponseInfo) {
-                    if (results.isEmpty()) {
-                        Snackbar.make(
-                                binding.mapView,
-                                "Latitude: ${point.latitude}\nLongitude: ${point.longitude}",
-                                Snackbar.LENGTH_LONG
-                        ).show()
-
-                        return
-                    }
-
-                    Snackbar.make(
-                            binding.mapView,
-                            "Set fake location to ${results.first().name}.",
-                            Snackbar.LENGTH_LONG
-                    ).show()
-                }
-            })
+            showLocSnackbar(point)
         }
 
         return true
