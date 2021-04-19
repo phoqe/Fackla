@@ -1,13 +1,17 @@
 package com.phoqe.fackla
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.location.Location
+import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.os.SystemClock
 import android.widget.Toast
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.mapboxsdk.Mapbox
+import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
 import com.mapbox.mapboxsdk.location.LocationComponentOptions
 import com.mapbox.mapboxsdk.location.modes.CameraMode
@@ -19,15 +23,15 @@ import com.mapbox.mapboxsdk.plugins.localization.LocalizationPlugin
 import com.phoqe.fackla.databinding.ActivityMainBinding
 import timber.log.Timber
 import java.lang.NullPointerException
-import java.lang.RuntimeException
 
-class MainActivity : AppCompatActivity(), PermissionsListener {
-    private val TAG = javaClass.simpleName
+class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLongClickListener {
+    private val TEST_PROVIDER = LocationManager.GPS_PROVIDER
 
     private var permsManager: PermissionsManager = PermissionsManager(this)
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var map: MapboxMap
+    private lateinit var locMgr: LocationManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +39,7 @@ class MainActivity : AppCompatActivity(), PermissionsListener {
         setupMapbox()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
+        locMgr = getSystemService(LOCATION_SERVICE) as LocationManager
 
         setContentView(binding.root)
 
@@ -100,6 +105,8 @@ class MainActivity : AppCompatActivity(), PermissionsListener {
             ui.isLogoEnabled = false
             ui.isAttributionEnabled = false
 
+            map.addOnMapLongClickListener(this)
+
             map.setStyle(Style.MAPBOX_STREETS) {
                 val lz = LocalizationPlugin(mapView, map, it)
 
@@ -145,14 +152,54 @@ class MainActivity : AppCompatActivity(), PermissionsListener {
     }
 
     override fun onExplanationNeeded(permissionsToExplain: MutableList<String>?) {
-        Toast.makeText(this, "onExplanationNeeded", Toast.LENGTH_LONG).show()
+        // Ignored
     }
 
     override fun onPermissionResult(granted: Boolean) {
         if (granted) {
             enableLocationComponent(map.style!!)
-        } else {
-            Toast.makeText(this, "onPermissionResult", Toast.LENGTH_LONG).show();
         }
+    }
+
+    override fun onMapLongClick(point: LatLng): Boolean {
+        Toast.makeText(this, point.toString(), Toast.LENGTH_LONG).show()
+
+        setMockLocation(point)
+
+        return true
+    }
+
+    private fun setMockLocation(cde: LatLng) {
+        locMgr.addTestProvider(
+                TEST_PROVIDER,
+                false,
+                false,
+                false,
+                false,
+                true,
+                false,
+                false,
+                1, // POWER_USAGE_LOW
+                1 // ACCURACY_FINE
+        )
+
+        val loc = Location(TEST_PROVIDER)
+
+        loc.latitude = cde.latitude
+        loc.longitude = cde.longitude
+        loc.altitude = cde.altitude
+        loc.time = System.currentTimeMillis()
+        loc.accuracy = 1F
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            loc.elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos()
+        }
+
+        locMgr.setTestProviderLocation(TEST_PROVIDER, loc)
+        locMgr.setTestProviderEnabled(TEST_PROVIDER, true)
+    }
+
+    private fun removeMockLocation() {
+        locMgr.removeTestProvider(TEST_PROVIDER)
     }
 }
