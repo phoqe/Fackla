@@ -17,5 +17,7 @@ class StopFakingLocationReceiver : BroadcastReceiver() {
         }
 
         Timber.d("Intent action supported.")
+
+        FakeLocationManager.getInstance(context).stop()
     }
 }

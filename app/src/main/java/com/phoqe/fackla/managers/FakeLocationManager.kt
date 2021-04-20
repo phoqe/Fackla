@@ -1,12 +1,16 @@
 package com.phoqe.fackla.managers
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.location.Location
 import android.location.LocationManager
 import android.os.SystemClock
 import com.mapbox.mapboxsdk.geometry.LatLng
+import com.phoqe.fackla.events.FakeLocationManagerStartEvent
+import com.phoqe.fackla.events.FakeLocationManagerStopEvent
 import com.phoqe.fackla.services.FakeLocationNotificationService
+import org.greenrobot.eventbus.EventBus
 import timber.log.Timber
 
 class FakeLocationManager(private val context: Context) {
@@ -17,11 +21,30 @@ class FakeLocationManager(private val context: Context) {
     private val locMgr = context.getSystemService(Context.LOCATION_SERVICE) as
             LocationManager
 
+    companion object {
+        @SuppressLint("StaticFieldLeak")
+        @Volatile
+        private var instance: FakeLocationManager? = null
+
+        fun getInstance(context: Context): FakeLocationManager {
+            return when {
+                instance != null -> instance!!
+                else -> synchronized(this) {
+                    if (instance == null) {
+                        instance = FakeLocationManager(context)
+                    }
+
+                    instance!!
+                }
+            }
+        }
+    }
+
     /**
      * Starts the fake location manager by creating test providers and fake locations to be set using
      * the created providers. The [point] is used when creating the fake location.
      */
-    fun start(point: LatLng, callback: (Location) -> Unit) {
+    fun start(point: LatLng, callback: ((Location) -> Unit)? = null) {
         Timber.v("start")
 
         setTestProviders()
@@ -37,23 +60,28 @@ class FakeLocationManager(private val context: Context) {
             context.startService(intent)
         }
 
-        callback(createFakeLocation(testProviders.first(), point))
+        val fakeLocation = createFakeLocation(testProviders.first(), point)
+
+        EventBus.getDefault().post(FakeLocationManagerStartEvent(fakeLocation))
+
+        callback?.let { it(fakeLocation) }
     }
 
     /**
      * Stops the fake location manager by disabling all test providers and removing them.
      */
-    fun stop(callback: () -> Unit) {
+    fun stop(callback: (() -> Unit)? = null) {
         Timber.v("stop")
 
         for (provider in testProviders) {
-            locMgr.setTestProviderEnabled(provider, false)
             locMgr.removeTestProvider(provider)
         }
 
         context.stopService(intent)
 
-        callback()
+        EventBus.getDefault().postSticky(FakeLocationManagerStopEvent())
+
+        callback?.let { it() }
     }
 
     /**

@@ -19,26 +19,30 @@ import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.localization.LocalizationPlugin
 import com.phoqe.fackla.databinding.ActivityMainBinding
+import com.phoqe.fackla.events.FakeLocationManagerStartEvent
+import com.phoqe.fackla.events.FakeLocationManagerStopEvent
 import com.phoqe.fackla.managers.FakeLocationManager
 import com.phoqe.fackla.services.FakeLocationNotificationService
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import timber.log.Timber
 import java.lang.NullPointerException
 
 class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLongClickListener {
     private var permsMgr: PermissionsManager = PermissionsManager(this)
     private var lastLocBeforeFaking: Location? = null
+    private var isFakingLocation = false
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var map: MapboxMap
     private lateinit var locMgr: LocationManager
-    private lateinit var fakeLocMgr: FakeLocationManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         locMgr = getSystemService(LOCATION_SERVICE) as LocationManager
-        fakeLocMgr = FakeLocationManager(this)
 
         setContentView(binding.root)
 
@@ -113,21 +117,33 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
     }
 
     private fun startFakingLocation(point: LatLng) {
-        lastLocBeforeFaking = map.locationComponent.lastKnownLocation
-
-        fakeLocMgr.start(point) { loc ->
-            updateLocationPostStateChange(loc)
-
-            binding.efabStopFakingLocation.visibility = View.VISIBLE
+        if (!isFakingLocation) {
+            lastLocBeforeFaking = map.locationComponent.lastKnownLocation
         }
+
+        FakeLocationManager.getInstance(this).start(point)
     }
 
     private fun stopFakingLocation() {
-        fakeLocMgr.stop {
-            lastLocBeforeFaking?.let { loc -> updateLocationPostStateChange(loc) }
+        FakeLocationManager.getInstance(this).stop()
+    }
 
-            binding.efabStopFakingLocation.visibility = View.GONE
-        }
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    fun onFakeLocationManagerStartEvent(event: FakeLocationManagerStartEvent) {
+        isFakingLocation = true
+
+        updateLocationPostStateChange(event.fakeLocation)
+
+        binding.efabStopFakingLocation.visibility = View.VISIBLE
+    }
+
+    @Subscribe(threadMode = ThreadMode.POSTING, sticky = true)
+    fun onFakeLocationManagerStopEvent(event: FakeLocationManagerStopEvent) {
+        isFakingLocation = false
+
+        lastLocBeforeFaking?.let { loc -> updateLocationPostStateChange(loc) }
+
+        binding.efabStopFakingLocation.visibility = View.GONE
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -154,6 +170,7 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
         super.onStart()
 
         binding.mapView.onStart()
+        EventBus.getDefault().register(this)
     }
 
     override fun onResume() {
@@ -172,6 +189,7 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
         super.onStop()
 
         binding.mapView.onStop()
+        EventBus.getDefault().unregister(this)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
