@@ -5,7 +5,7 @@ import com.mapbox.mapboxsdk.Mapbox
 import com.phoqe.fackla.registers.NotificationRegister
 import timber.log.Timber
 
-class App: Application() {
+class AppDelegate: Application() {
     private lateinit var notificationRegister: NotificationRegister
 
     override fun onCreate() {
