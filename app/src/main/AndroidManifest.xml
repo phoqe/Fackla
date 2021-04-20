@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:name=".AppDelegate"
-        android:theme="@style/Theme.Fackla">
+        android:theme="@style/Theme.Fackla"
+        android:fullBackupContent="@xml/backup_descriptor">
         <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
