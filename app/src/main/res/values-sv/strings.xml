@@ -2,7 +2,7 @@
     <string name="app_name">Fackla</string>
 
     <string name="fake_location_channel_name">Falsk plats</string>
-    <string name="fake_location_channel_description">Denna notistyp möjliggör Fackla att fungera i andra appar.</string>
+    <string name="fake_location_channel_description">Denna typ av notis tillåter appen att använda en falsk plats, även i andra appar.</string>
 
     <string name="fake_location_notification_title">Falsk plats</string>
     <string name="fake_location_notification_description">Din plats är förfalskad, även i andra appar.</string>
