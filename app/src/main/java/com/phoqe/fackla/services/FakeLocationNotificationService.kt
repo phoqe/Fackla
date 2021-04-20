@@ -4,13 +4,16 @@ import android.app.Notification
 import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import com.phoqe.fackla.MainActivity
 import com.phoqe.fackla.R
+import com.phoqe.fackla.receivers.StopFakingLocationReceiver
 
 class FakeLocationNotificationService: Service() {
     private val notificationId = 1
+    private val receiver = StopFakingLocationReceiver()
 
     private fun createNotification(): Notification {
         val builder = NotificationCompat.Builder(this, getString(R.string.fake_location_channel_id))
@@ -44,6 +47,13 @@ class FakeLocationNotificationService: Service() {
         super.onCreate()
 
         startForeground(notificationId, createNotification())
+        registerReceiver(receiver, IntentFilter("com.samsung.android.location.mock.delete"))
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        unregisterReceiver(receiver)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
