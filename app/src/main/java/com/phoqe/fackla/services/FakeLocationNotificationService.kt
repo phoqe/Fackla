@@ -15,11 +15,28 @@ class FakeLocationNotificationService: Service() {
     private val notificationId = 1
     private val receiver = StopFakingLocationReceiver()
 
+    private fun createStopAction(): NotificationCompat.Action {
+        val intent = Intent(this, StopFakingLocationReceiver::class.java).apply {
+            action = "com.phoqe.fackla.action.STOP_FAKING_LOCATION"
+        }
+        val pendingIntent = PendingIntent.getBroadcast(
+                this,
+                0,
+                intent,
+                0
+        )
+
+        return NotificationCompat.Action(
+                null,
+                getString(R.string.fake_location_notification_action_title),
+                pendingIntent
+        )
+    }
+
     private fun createNotification(): Notification {
         val builder = NotificationCompat.Builder(this, getString(R.string.fake_location_channel_id))
         val intent = Intent(this, MainActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
-        val action = NotificationCompat.Action(null, getString(R.string.fake_location_notification_action_title), pendingIntent)
 
         builder.setSmallIcon(R.mipmap.ic_launcher)
         builder.priority = NotificationCompat.PRIORITY_MAX
@@ -30,7 +47,7 @@ class FakeLocationNotificationService: Service() {
         builder.setCategory(NotificationCompat.CATEGORY_SERVICE)
         builder.setOngoing(true)
         builder.setContentIntent(pendingIntent)
-        builder.addAction(action)
+        builder.addAction(createStopAction())
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             builder.color = getColor(R.color.primary_color)
@@ -47,7 +64,18 @@ class FakeLocationNotificationService: Service() {
         super.onCreate()
 
         startForeground(notificationId, createNotification())
-        registerReceiver(receiver, IntentFilter("com.samsung.android.location.mock.delete"))
+
+        val intents = arrayOf(
+                "com.samsung.android.location.mock.delete",
+                "com.phoqe.fackla.action.STOP_FAKING_LOCATION"
+        )
+        val intentFilter = IntentFilter()
+
+        for (intent in intents) {
+            intentFilter.addAction(intent)
+        }
+
+        registerReceiver(receiver, intentFilter)
     }
 
     override fun onDestroy() {

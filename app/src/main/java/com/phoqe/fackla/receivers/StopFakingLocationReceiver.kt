@@ -10,7 +10,10 @@ class StopFakingLocationReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         Timber.v("onReceive")
 
-        if (!intent.action.equals("com.samsung.android.location.mock.delete")) {
+        Timber.d(intent.toString())
+
+        if (!intent.action.equals("com.samsung.android.location.mock.delete") &&
+                !intent.action.equals("com.phoqe.fackla.action.STOP_FAKING_LOCATION")) {
             Timber.e("Intent action not supported.")
 
             return
