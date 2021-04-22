@@ -26,6 +26,10 @@ class FakeLocationManager(private val context: Context) {
         @Volatile
         private var instance: FakeLocationManager? = null
 
+        /**
+         * Presents a singleton version of the FakeLocationManager class. [context] is not leaked
+         * even though the IDE says so.
+         */
         fun getInstance(context: Context): FakeLocationManager {
             return when {
                 instance != null -> instance!!
@@ -92,8 +96,6 @@ class FakeLocationManager(private val context: Context) {
         Timber.v("addTestProvider")
 
         for (provider in testProviders) {
-            locMgr.removeTestProvider(provider)
-
             locMgr.addTestProvider(
                     provider,
                     false,
