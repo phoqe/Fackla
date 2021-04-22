@@ -2,6 +2,7 @@ package com.phoqe.fackla
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.res.Configuration
 import android.location.Location
 import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
@@ -53,6 +54,13 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
         configMapView(savedInstanceState)
     }
 
+    private fun getMapStyle(): String {
+        return when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_YES -> Style.DARK
+            else -> Style.MAPBOX_STREETS
+        }
+    }
+
     private fun configMapView(savedInstanceState: Bundle?) {
         val mapView = binding.mapView
 
@@ -67,8 +75,7 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
             ui.isAttributionEnabled = false
 
             map.addOnMapLongClickListener(this)
-
-            map.setStyle(Style.MAPBOX_STREETS) {
+            map.setStyle(getMapStyle()) {
                 val lz = LocalizationPlugin(mapView, map, it)
 
                 try {
