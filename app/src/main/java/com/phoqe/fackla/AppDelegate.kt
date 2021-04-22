@@ -1,11 +1,12 @@
 package com.phoqe.fackla
 
 import android.app.Application
+import androidx.multidex.MultiDexApplication
 import com.mapbox.mapboxsdk.Mapbox
 import com.phoqe.fackla.registers.NotificationRegister
 import timber.log.Timber
 
-class AppDelegate: Application() {
+class AppDelegate: MultiDexApplication() {
     private lateinit var notificationRegister: NotificationRegister
 
     override fun onCreate() {

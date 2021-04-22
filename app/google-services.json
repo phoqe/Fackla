@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "647397377964",
+    "project_id": "fackla-27517",
+    "storage_bucket": "fackla-27517.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647397377964:android:0d0e17eea3df2c85015c09",
+        "android_client_info": {
+          "package_name": "com.phoqe.fackla"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "647397377964-i6o1gmoci06d9j2kr8540qs8kbba4omq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.phoqe.fackla",
+            "certificate_hash": "f2169462e37e593c8e6d38ab518f1a973be2d102"
+          }
+        },
+        {
+          "client_id": "647397377964-bb31fie1g7p01n8vgsk2ne2sdkb1k8vk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChppiYdUnKRNHj-lffqpx2-ukDjldKxbw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "647397377964-bb31fie1g7p01n8vgsk2ne2sdkb1k8vk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
