@@ -62,6 +62,7 @@ dependencies {
     implementation "com.google.firebase:firebase-analytics-ktx"
     implementation "com.google.firebase:firebase-crashlytics-ktx"
     implementation "com.google.firebase:firebase-perf-ktx"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     testImplementation "junit:junit:4.+"
 
