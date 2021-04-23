@@ -8,7 +8,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.phoqe.fackla.databinding.ActivityOnboardingBinding
 import com.phoqe.fackla.fragments.OnboardingScreenFragment
 
-private const val NUM_PAGES = 5;
+private const val NUM_PAGES = 5
 
 class OnboardingActivity : FragmentActivity() {
     private lateinit var binding: ActivityOnboardingBinding

@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.phoqe.fackla.databinding.FragmentOnboardingScreenBinding
 
-class OnboardingScreenFragment : Fragment() {
+class OnboardingWelcomeScreenFragment : Fragment() {
     private var _binding: FragmentOnboardingScreenBinding? = null
     private val binding get() = _binding!!
 
