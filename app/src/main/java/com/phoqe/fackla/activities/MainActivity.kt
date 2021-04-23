@@ -1,7 +1,6 @@
-package com.phoqe.fackla
+package com.phoqe.fackla.activities
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.content.res.Configuration
 import android.location.Location
 import android.location.LocationManager
@@ -23,7 +22,6 @@ import com.phoqe.fackla.databinding.ActivityMainBinding
 import com.phoqe.fackla.events.FakeLocationManagerStartEvent
 import com.phoqe.fackla.events.FakeLocationManagerStopEvent
 import com.phoqe.fackla.managers.FakeLocationManager
-import com.phoqe.fackla.services.FakeLocationNotificationService
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode

@@ -7,7 +7,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
-import com.phoqe.fackla.MainActivity
+import com.phoqe.fackla.activities.MainActivity
 import com.phoqe.fackla.R
 import com.phoqe.fackla.receivers.StopFakingLocationReceiver
 
