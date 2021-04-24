@@ -11,4 +11,5 @@
     <string name="on_explanation_needed_toast_text">Tillåt för att visa din plats på kartan.</string>
     <string name="on_permission_result_not_granted_toast_text">Din plats kommer inte visas på kartan.</string>
     <string name="efab_stop_faking_location_text">Sluta fejka plats</string>
+    <string name="empty_state_illustration_content_description">Illustration</string>
 </resources>
