@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="empty_state">
+    <declare-styleable name="EmptyState">
         <attr name="image" format="reference" />
         <attr name="title" format="string" />
         <attr name="body" format="string" />
