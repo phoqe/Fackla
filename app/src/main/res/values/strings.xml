@@ -14,4 +14,7 @@
     <string name="on_permission_result_not_granted_toast_text">Your location will not be shown.</string>
     <string name="efab_stop_faking_location_text">Stop Faking Location</string>
     <string name="empty_state_illustration_content_description">Illustration</string>
+
+    <string name="onboarding_intro_screen_title">Stop work from tracking you.</string>
+    <string name="onboarding_intro_screen_body">Prevent your workplace from tracking you by changing your virtual location to anywhere you like. Sit back and relax at a café while you’re working from the office.</string>
 </resources>

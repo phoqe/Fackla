@@ -12,4 +12,7 @@
     <string name="on_permission_result_not_granted_toast_text">Din plats kommer inte visas på kartan.</string>
     <string name="efab_stop_faking_location_text">Sluta fejka plats</string>
     <string name="empty_state_illustration_content_description">Illustration</string>
+
+    <string name="onboarding_intro_screen_title">Hindra jobbet från att spåra dig.</string>
+    <string name="onboarding_intro_screen_body">Hindra ditt jobb från att spåra dig genom att ändra din virtuella plats till var som helst. Luta dig tillbaka i kaféet medan du jobbar från kontoret.</string>
 </resources>

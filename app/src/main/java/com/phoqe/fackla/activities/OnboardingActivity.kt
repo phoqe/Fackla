@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.phoqe.fackla.databinding.ActivityOnboardingBinding
+import com.phoqe.fackla.fragments.OnboardingIntroScreenFragment
 import com.phoqe.fackla.fragments.OnboardingScreenFragment
 
 private const val NUM_PAGES = 5
@@ -17,7 +18,7 @@ class OnboardingActivity : FragmentActivity() {
     private inner class OnboardingPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
         override fun getItemCount(): Int = NUM_PAGES
 
-        override fun createFragment(position: Int): Fragment = OnboardingScreenFragment()
+        override fun createFragment(position: Int): Fragment = OnboardingIntroScreenFragment()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
