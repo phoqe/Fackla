@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.phoqe.fackla.databinding.FragmentOnboardingIntroScreenBinding
-import com.phoqe.fackla.databinding.FragmentOnboardingScreenBinding
 
 class OnboardingIntroScreenFragment : Fragment() {
     private var _binding: FragmentOnboardingIntroScreenBinding? = null

@@ -15,4 +15,8 @@
 
     <string name="onboarding_intro_screen_title">Hindra jobbet från att spåra dig.</string>
     <string name="onboarding_intro_screen_body">Hindra ditt jobb från att spåra dig genom att ändra din virtuella plats till var som helst. Luta dig tillbaka i kaféet medan du jobbar från kontoret.</string>
+
+    <string name="onboarding_loc_perm_screen_title">Allt vi behöver är din tillåtelse.</string>
+    <string name="onboarding_loc_perm_screen_body">Behörighet till plats används för att visa din nuvarande plats på kartan. Den används också för att ändra din plats. Fackla kan inte fungera utan den.</string>
+    <string name="onboarding_loc_perm_screen_button_text">Granska behörighet…</string>
 </resources>

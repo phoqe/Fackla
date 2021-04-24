@@ -7,8 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:padding="24dp"
-    tools:context=".fragments.OnboardingScreenFragment">
+    android:padding="24dp">
 
     <com.phoqe.fackla.components.EmptyState
         android:layout_width="match_parent"

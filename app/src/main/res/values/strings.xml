@@ -17,4 +17,8 @@
 
     <string name="onboarding_intro_screen_title">Stop work from tracking you.</string>
     <string name="onboarding_intro_screen_body">Prevent your workplace from tracking you by changing your virtual location to anywhere you like. Sit back and relax at a café while you’re working from the office.</string>
+
+    <string name="onboarding_loc_perm_screen_button_text">Review Permission…</string>
+    <string name="onboarding_loc_perm_screen_title">All we need is your permission.</string>
+    <string name="onboarding_loc_perm_screen_body">The Location Permission is used to show your current location on the map. It’s also used to change your location. Fackla cannot function without it.</string>
 </resources>
