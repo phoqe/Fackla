@@ -15,7 +15,7 @@
     <string name="efab_stop_faking_location_text">Stop Faking Location</string>
     <string name="empty_state_illustration_content_description">Illustration</string>
 
-    <string name="onboarding_intro_screen_title">Stop work from tracking you.</string>
+    <string name="onboarding_intro_screen_title">Stop Work From Tracking You</string>
     <string name="onboarding_intro_screen_body">Prevent your workplace from tracking you by changing your virtual location to anywhere you like. Sit back and relax at a café while you’re working from the office.</string>
 
     <string name="onboarding_loc_perm_screen_button_text">Review Permission…</string>
@@ -25,4 +25,8 @@
     <string name="onboarding_developer_mode_title">Turn on Developer Mode</string>
     <string name="onboarding_developer_mode_body">Changing your location with Fackla requires enabling Developer Mode on your device. Tap ”Become a Developer“ then find and tap Build Number seven times. The process may vary depending on your device.</string>
     <string name="onboarding_developer_mode_button">Become a Developer…</string>
+
+    <string name="onboarding_mock_location_title">Select Mock Location App</string>
+    <string name="onboarding_mock_location_body">Now that you’ve enabled Developer Mode you need to select Fackla as your mock location app. Tap ”Select Mock Location App…“ to select Fackla as your mock location app.</string>
+    <string name="onboarding_mock_location_button">Select Mock Location App…</string>
 </resources>
