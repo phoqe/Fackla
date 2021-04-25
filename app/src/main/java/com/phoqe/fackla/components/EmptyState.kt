@@ -6,12 +6,12 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import com.phoqe.fackla.R
-import com.phoqe.fackla.databinding.ComponentEmptyStateBinding
+import com.phoqe.fackla.databinding.EmptyStateBinding
 
 class EmptyState @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
-    private val binding = ComponentEmptyStateBinding.inflate(LayoutInflater.from(context), this, true)
+    private val binding = EmptyStateBinding.inflate(LayoutInflater.from(context), this, true)
 
     init {
         context.theme.obtainStyledAttributes(attrs, R.styleable.EmptyState, 0, 0).apply {
