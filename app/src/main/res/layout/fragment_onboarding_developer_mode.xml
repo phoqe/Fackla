@@ -2,18 +2,16 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="24dp"
+    android:orientation="vertical">
 
     <com.phoqe.fackla.components.EmptyState
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-
         app:illustration="@drawable/ic_undraw_personal_settings"
         app:title="@string/onboarding_developer_mode_title"
         app:body="@string/onboarding_developer_mode_body"

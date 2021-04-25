@@ -14,17 +14,17 @@
     <string name="empty_state_illustration_content_description">Illustration</string>
 
     <string name="onboarding_intro_screen_title">Hindra jobbet från att spåra dig</string>
-    <string name="onboarding_intro_screen_body">Hindra ditt jobb från att spåra dig genom att ändra din virtuella plats till var som helst. Luta dig tillbaka i kaféet medan du jobbar från kontoret.</string>
+    <string name="onboarding_intro_screen_body">Hindra ditt jobb från att spåra dig genom att ändra din virtuella plats till var som helst. Luta dig tillbaka i kaféet medan det verkar som du jobbar från kontoret.</string>
 
-    <string name="onboarding_loc_perm_screen_title">Allt vi behöver är din tillåtelse</string>
-    <string name="onboarding_loc_perm_screen_body">Behörighet till plats används för att visa din nuvarande plats på kartan. Den används också för att ändra din plats. Fackla kan inte fungera utan den.</string>
-    <string name="onboarding_loc_perm_screen_button_text">Granska behörighet…</string>
-
-    <string name="onboarding_developer_mode_title">Sätt på utvecklarläget</string>
-    <string name="onboarding_developer_mode_body">För att ändra din plats med Fackla behöver du slå på utvecklarläget i din enhet. Tryck ”Bli en utvecklare…” sedan hitta och tryck på Kompileringsnr sju gånger. Processen kan vara annorlunda beroende på din enhet.</string>
+    <string name="onboarding_developer_mode_title">Slå på utvecklarläget</string>
+    <string name="onboarding_developer_mode_body">För att ändra din plats med Fackla behöver du slå på utvecklarläget i din enhet. Tryck “Bli en utvecklare…“ sedan hitta och tryck på Kompileringsnr sju gånger. Processen kan vara annorlunda beroende på din enhet.</string>
     <string name="onboarding_developer_mode_button">Bli en utvecklare…</string>
 
     <string name="onboarding_mock_location_title">Välj app för påhittad plats</string>
-    <string name="onboarding_mock_location_body">Nu när du satt på utvecklarläget måste du välja Fackla som din app för påhittad plats. Tryck ”Välj app för påhittad plats…” för att välja Fackla som din app för påhittad plats.</string>
+    <string name="onboarding_mock_location_body">Med utvecklarläget påslaget, måste du välja Fackla som din app för påhittad plats. Tryck “Välj app för påhittad plats…“ för att välja Fackla som din app för påhittad plats.</string>
     <string name="onboarding_mock_location_button">Välj app för påhittad plats…</string>
+
+    <string name="onboarding_location_permission_title">Behörighet till att läsa din plats</string>
+    <string name="onboarding_location_permission_body">Din plats används för att visa din position på kartan. Den används också för att förfalska din plats. Fackla kan inte fungera utan tillåtelse att läsa din plats.</string>
+    <string name="onboarding_location_permission_button">Granska behörighet…</string>
 </resources>
