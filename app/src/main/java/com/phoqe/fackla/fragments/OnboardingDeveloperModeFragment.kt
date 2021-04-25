@@ -1,0 +1,33 @@
+package com.phoqe.fackla.fragments
+
+import android.content.Intent
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.phoqe.fackla.databinding.FragmentOnboardingDeveloperModeBinding
+
+class OnboardingDeveloperModeFragment : Fragment() {
+    private var _binding: FragmentOnboardingDeveloperModeBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentOnboardingDeveloperModeBinding.inflate(layoutInflater, container, false)
+
+        binding.btnBecomeADeveloper.setOnClickListener {
+            startActivity(Intent(android.provider.Settings.ACTION_DEVICE_INFO_SETTINGS))
+        }
+
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        _binding = null
+    }
+}

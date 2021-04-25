@@ -21,4 +21,8 @@
     <string name="onboarding_loc_perm_screen_button_text">Review Permission…</string>
     <string name="onboarding_loc_perm_screen_title">All we need is your permission.</string>
     <string name="onboarding_loc_perm_screen_body">The Location Permission is used to show your current location on the map. It’s also used to change your location. Fackla cannot function without it.</string>
+
+    <string name="onboarding_developer_mode_title">Turn on Developer Mode</string>
+    <string name="onboarding_developer_mode_body">Changing your location with Fackla requires enabling Developer Mode on your device. Tap ”Become a Developer“ then find and tap Build Number seven times. The process may vary depending on your device.</string>
+    <string name="onboarding_developer_mode_button">Become a Developer…</string>
 </resources>

@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.phoqe.fackla.databinding.ActivityOnboardingBinding
+import com.phoqe.fackla.fragments.OnboardingDeveloperModeFragment
 import com.phoqe.fackla.fragments.OnboardingIntroFragment
 import com.phoqe.fackla.fragments.OnboardingLocationPermissionFragment
 
@@ -19,9 +20,17 @@ class OnboardingActivity : FragmentActivity() {
         override fun getItemCount(): Int = NUM_PAGES
 
         override fun createFragment(position: Int): Fragment {
+//            val isDev = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
+//                Settings.Secure.getInt(contentResolver, Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0) == 1
+//            } else {
+//                Settings.Secure.getInt(contentResolver, Settings.Secure.DEVELOPMENT_SETTINGS_ENABLED, 0) == 1
+//            }
+
+            val isDev = false
+
             return when (position) {
                 0 -> OnboardingIntroFragment()
-                1 -> OnboardingLocationPermissionFragment()
+                1 -> if (isDev) OnboardingLocationPermissionFragment() else OnboardingDeveloperModeFragment()
                 else -> OnboardingIntroFragment()
             }
         }
