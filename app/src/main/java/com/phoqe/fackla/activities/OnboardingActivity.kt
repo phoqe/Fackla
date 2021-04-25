@@ -6,8 +6,8 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.phoqe.fackla.databinding.ActivityOnboardingBinding
-import com.phoqe.fackla.fragments.OnboardingIntroScreenFragment
-import com.phoqe.fackla.fragments.OnboardingLocPermScreenFragment
+import com.phoqe.fackla.fragments.OnboardingIntroFragment
+import com.phoqe.fackla.fragments.OnboardingLocationPermissionFragment
 
 private const val NUM_PAGES = 2
 
@@ -20,9 +20,9 @@ class OnboardingActivity : FragmentActivity() {
 
         override fun createFragment(position: Int): Fragment {
             return when (position) {
-                0 -> OnboardingIntroScreenFragment()
-                1 -> OnboardingLocPermScreenFragment()
-                else -> OnboardingIntroScreenFragment()
+                0 -> OnboardingIntroFragment()
+                1 -> OnboardingLocationPermissionFragment()
+                else -> OnboardingIntroFragment()
             }
         }
     }

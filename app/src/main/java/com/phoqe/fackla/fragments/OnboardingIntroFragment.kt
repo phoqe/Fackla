@@ -5,17 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.phoqe.fackla.databinding.FragmentOnboardingIntroScreenBinding
+import com.phoqe.fackla.databinding.FragmentOnboardingIntroBinding
 
-class OnboardingIntroScreenFragment : Fragment() {
-    private var _binding: FragmentOnboardingIntroScreenBinding? = null
+class OnboardingIntroFragment : Fragment() {
+    private var _binding: FragmentOnboardingIntroBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentOnboardingIntroScreenBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentOnboardingIntroBinding.inflate(layoutInflater, container, false)
 
         return binding.root
     }

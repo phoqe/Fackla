@@ -5,17 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.phoqe.fackla.databinding.FragmentOnboardingLocPermScreenBinding
+import com.phoqe.fackla.databinding.FragmentOnboardingLocationPermissionBinding
 
-class OnboardingLocPermScreenFragment : Fragment() {
-    private var _binding: FragmentOnboardingLocPermScreenBinding? = null
+class OnboardingLocationPermissionFragment : Fragment() {
+    private var _binding: FragmentOnboardingLocationPermissionBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentOnboardingLocPermScreenBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentOnboardingLocationPermissionBinding.inflate(layoutInflater, container, false)
 
         return binding.root
     }
