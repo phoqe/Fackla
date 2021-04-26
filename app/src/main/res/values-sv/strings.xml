@@ -17,14 +17,14 @@
     <string name="onboarding_intro_screen_body">Hindra ditt jobb från att spåra dig genom att ändra din virtuella plats till var som helst. Luta dig tillbaka i kaféet medan det verkar som du jobbar från kontoret.</string>
 
     <string name="onboarding_developer_mode_title">Slå på utvecklarläget</string>
-    <string name="onboarding_developer_mode_body">För att ändra din plats med Fackla behöver du slå på utvecklarläget i din enhet. Tryck “Bli en utvecklare…“ sedan hitta och tryck på Kompileringsnr sju gånger. Processen kan vara annorlunda beroende på din enhet.</string>
+    <string name="onboarding_developer_mode_body">För att ändra din plats med Fackla behöver du slå på utvecklarläget i din enhet. Tryck ”Bli en utvecklare…” sedan hitta och tryck på Kompileringsnummer sju gånger. Processen kan vara annorlunda för din enhet.</string>
     <string name="onboarding_developer_mode_button">Bli en utvecklare…</string>
 
     <string name="onboarding_mock_location_title">Välj app för påhittad plats</string>
-    <string name="onboarding_mock_location_body">Med utvecklarläget påslaget, måste du välja Fackla som din app för påhittad plats. Tryck “Välj app för påhittad plats…“ för att välja Fackla som din app för påhittad plats.</string>
-    <string name="onboarding_mock_location_button">Välj app för påhittad plats…</string>
+    <string name="onboarding_mock_location_body">Med utvecklarläget påslaget, måste du välja Fackla som din app för påhittad plats. Tryck ”Välj app…” för att välja Fackla som din app för påhittad plats.</string>
+    <string name="onboarding_mock_location_button">Välj app…</string>
 
     <string name="onboarding_location_permission_title">Behörighet till att läsa din plats</string>
-    <string name="onboarding_location_permission_body">Din plats används för att visa din position på kartan. Den används också för att förfalska din plats. Fackla kan inte fungera utan tillåtelse att läsa din plats.</string>
+    <string name="onboarding_location_permission_body">Din plats läs för att visa din position på en karta och förfalska din plats i andra appar. Fackla kan inte fungera utan tillåtelse att läsa din plats.</string>
     <string name="onboarding_location_permission_button">Granska behörighet…</string>
 </resources>

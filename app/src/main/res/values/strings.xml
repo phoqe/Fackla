@@ -23,10 +23,10 @@
     <string name="onboarding_developer_mode_button">Become a Developer…</string>
 
     <string name="onboarding_mock_location_title">Select Mock Location App</string>
-    <string name="onboarding_mock_location_body">With Developer Mode turned on, you need to select Fackla as your mock location app. Tap “Select Mock Location App…” to select Fackla as your mock location app.</string>
-    <string name="onboarding_mock_location_button">Select Mock Location App…</string>
+    <string name="onboarding_mock_location_body">With Developer Mode turned on, you need to select Fackla as your mock location app. Tap “Select App…” to select Fackla as your mock location app.</string>
+    <string name="onboarding_mock_location_button">Select App…</string>
 
     <string name="onboarding_location_permission_title">Permission to Read Your Location</string>
-    <string name="onboarding_location_permission_body">Your location is used to show your position on the map. It‘s also used to fake your location for other apps. Fackla cannot function without permission to read your location.</string>
+    <string name="onboarding_location_permission_body">Your location is read to show your position on a map and fake your location for other apps. Fackla cannot function without permission to read your location.</string>
     <string name="onboarding_location_permission_button">Review Permission…</string>
 </resources>

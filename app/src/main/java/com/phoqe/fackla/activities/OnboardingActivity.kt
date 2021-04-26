@@ -1,7 +1,12 @@
 package com.phoqe.fackla.activities
 
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.provider.Settings
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -20,6 +25,8 @@ class OnboardingActivity : FragmentActivity() {
     private lateinit var viewPager: ViewPager2
 
     private inner class OnboardingPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
+        private val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this@OnboardingActivity)
+
         private var hasSelectedMockLocApp = false
 
         private fun isDev(): Boolean {
@@ -28,6 +35,24 @@ class OnboardingActivity : FragmentActivity() {
             } else {
                 Settings.Secure.getInt(contentResolver, Settings.Secure.DEVELOPMENT_SETTINGS_ENABLED, 0) == 1
             }
+        }
+
+        private fun hasAdequatePerms(): Boolean {
+            return ContextCompat.checkSelfPermission(
+                this@OnboardingActivity,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        }
+
+        private fun finishOnboarding() {
+            with(sharedPrefs.edit()) {
+                putBoolean("has_onboarded", true)
+
+                apply()
+            }
+
+            startActivity(Intent(this@OnboardingActivity, MainActivity::class.java))
+            finish()
         }
 
         override fun getItemCount(): Int = NUM_PAGES
@@ -56,9 +81,24 @@ class OnboardingActivity : FragmentActivity() {
                 }
                 2 -> {
                     if (hasSelectedMockLocApp) {
-                        OnboardingLocationPermissionFragment()
+                        if (hasAdequatePerms()) {
+                            finishOnboarding()
+
+                            OnboardingIntroFragment()
+                        } else {
+                            OnboardingLocationPermissionFragment()
+                        }
                     } else {
                         OnboardingMockLocationFragment()
+                    }
+                }
+                3 -> {
+                    if (hasAdequatePerms()) {
+                        finishOnboarding()
+
+                        OnboardingIntroFragment()
+                    } else {
+                        OnboardingLocationPermissionFragment()
                     }
                 }
                 else -> OnboardingIntroFragment()
