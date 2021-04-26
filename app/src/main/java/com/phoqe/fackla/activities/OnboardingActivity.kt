@@ -13,12 +13,9 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.phoqe.fackla.BuildConfig
 import com.phoqe.fackla.databinding.ActivityOnboardingBinding
-import com.phoqe.fackla.fragments.OnboardingDeveloperModeFragment
-import com.phoqe.fackla.fragments.OnboardingIntroFragment
-import com.phoqe.fackla.fragments.OnboardingLocationPermissionFragment
-import com.phoqe.fackla.fragments.OnboardingMockLocationFragment
+import com.phoqe.fackla.fragments.*
 
-private const val NUM_PAGES = 4
+private const val NUM_PAGES = 5
 
 class OnboardingActivity : FragmentActivity() {
     private lateinit var binding: ActivityOnboardingBinding
@@ -64,6 +61,7 @@ class OnboardingActivity : FragmentActivity() {
                     1 -> OnboardingDeveloperModeFragment()
                     2 -> OnboardingMockLocationFragment()
                     3 -> OnboardingLocationPermissionFragment()
+                    4 -> OnboardingEndFragment()
                     else -> OnboardingIntroFragment()
                 }
             }
@@ -101,6 +99,7 @@ class OnboardingActivity : FragmentActivity() {
                         OnboardingLocationPermissionFragment()
                     }
                 }
+                4 -> OnboardingEndFragment()
                 else -> OnboardingIntroFragment()
             }
         }

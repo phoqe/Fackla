@@ -27,4 +27,8 @@
     <string name="onboarding_location_permission_title">Behörighet till att läsa din plats</string>
     <string name="onboarding_location_permission_body">Din plats läs för att visa din position på en karta och förfalska din plats i andra appar. Fackla kan inte fungera utan tillåtelse att läsa din plats.</string>
     <string name="onboarding_location_permission_button">Granska behörighet…</string>
+
+    <string name="onboarding_end_title">Tryck och håll på kartan</string>
+    <string name="onboarding_end_body">Du kan ändra din plats genom att trycka och hålla på en punkt på kartan. När du är klar, tryck ”Sluta använda falsk plats” för att återställa din plats.</string>
+    <string name="onboarding_end_button">Kom igång</string>
 </resources>

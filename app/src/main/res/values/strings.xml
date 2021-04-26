@@ -29,4 +29,8 @@
     <string name="onboarding_location_permission_title">Permission to Read Your Location</string>
     <string name="onboarding_location_permission_body">Your location is read to show your position on a map and fake your location for other apps. Fackla cannot function without permission to read your location.</string>
     <string name="onboarding_location_permission_button">Review Permission…</string>
+
+    <string name="onboarding_end_title">Tap and Hold the Map</string>
+    <string name="onboarding_end_body">You can change your location by tapping and holding a point on the map. When you’re done, tap “Stop Faking Location” to reset your location.</string>
+    <string name="onboarding_end_button">Get Started</string>
 </resources>
