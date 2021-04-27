@@ -17,7 +17,7 @@
         app:body="@string/onboarding_end_body" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_get_started"
+        android:id="@+id/btn_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/onboarding_end_button" />

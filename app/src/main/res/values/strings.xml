@@ -17,6 +17,7 @@
 
     <string name="onboarding_intro_screen_title">Stop Work From Tracking You</string>
     <string name="onboarding_intro_screen_body">Prevent your workplace from tracking you by changing your virtual location to anywhere you like. Sit back and relax at a café while you’re appearing to work from the office.</string>
+    <string name="onboarding_intro_button">Get Started</string>
 
     <string name="onboarding_developer_mode_title">Turn on Developer Mode</string>
     <string name="onboarding_developer_mode_body">Changing your location with Fackla requires turning on Developer Mode on your device. Tap “Become a Developer…” then find and tap Build Number seven times.</string>

@@ -15,6 +15,7 @@
 
     <string name="onboarding_intro_screen_title">Hindra jobbet från att spåra dig</string>
     <string name="onboarding_intro_screen_body">Hindra ditt jobb från att spåra dig genom att ändra din virtuella plats till var som helst. Luta dig tillbaka i kaféet medan det verkar som du jobbar från kontoret.</string>
+    <string name="onboarding_intro_button">Kom igång</string>
 
     <string name="onboarding_developer_mode_title">Slå på utvecklarläget</string>
     <string name="onboarding_developer_mode_body">För att ändra din plats med Fackla behöver du slå på utvecklarläget i din enhet. Tryck ”Bli en utvecklare…” sedan hitta och tryck på Kompileringsnr sju gånger.</string>

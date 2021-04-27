@@ -1,29 +1,31 @@
 package com.phoqe.fackla.activities
 
-import android.Manifest
 import android.content.Intent
 import android.content.SharedPreferences
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.provider.Settings
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.preference.PreferenceManager
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.phoqe.fackla.BuildConfig
 import com.phoqe.fackla.adapters.OnboardingPagerAdapter
 import com.phoqe.fackla.databinding.ActivityOnboardingBinding
 import com.phoqe.fackla.fragments.*
 
-private const val NUM_PAGES = 5
-
-class OnboardingActivity : FragmentActivity(), OnboardingEndFragment.OnGetStartedClickListener {
+class OnboardingActivity : FragmentActivity(),
+        OnboardingIntroFragment.OnGetStartedClickListener,
+        OnboardingEndFragment.onStartClickListener,
+        OnboardingMockLocationFragment.OnSelectMockAppClickListener{
     private lateinit var prefs: SharedPreferences
     private lateinit var binding: ActivityOnboardingBinding
     private lateinit var viewPager: ViewPager2
+
+    private var skipSaveProgress = false
+
+    private fun saveProgress(currentItem: Int = viewPager.currentItem) {
+        with(prefs.edit()) {
+            putInt("onboarding_item", currentItem)
+            apply()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +36,17 @@ class OnboardingActivity : FragmentActivity(), OnboardingEndFragment.OnGetStarte
         setContentView(binding.root)
 
         viewPager = binding.root
-        viewPager.adapter = OnboardingPagerAdapter(this, viewPager)
+        viewPager.adapter = OnboardingPagerAdapter(this)
+        viewPager.isUserInputEnabled = false
+        viewPager.currentItem = prefs.getInt("onboarding_item", 0)
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        if (!skipSaveProgress) {
+            saveProgress()
+        }
     }
 
     override fun onBackPressed() {
@@ -46,6 +58,10 @@ class OnboardingActivity : FragmentActivity(), OnboardingEndFragment.OnGetStarte
     }
 
     override fun onGetStartedClick() {
+        viewPager.currentItem = 1
+    }
+
+    override fun onStartClick() {
         with(prefs.edit()) {
             putBoolean("has_onboarded", true)
             apply()
@@ -53,5 +69,10 @@ class OnboardingActivity : FragmentActivity(), OnboardingEndFragment.OnGetStarte
 
         startActivity(Intent(this, MainActivity::class.java))
         finish()
+    }
+
+    override fun onSelectMockAppClick() {
+        skipSaveProgress = true
+        saveProgress(2)
     }
 }

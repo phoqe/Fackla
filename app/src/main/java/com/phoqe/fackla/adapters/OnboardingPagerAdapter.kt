@@ -9,11 +9,12 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.phoqe.fackla.activities.OnboardingActivity
 import com.phoqe.fackla.fragments.*
+import timber.log.Timber
 
-private const val NUM_PAGES = 5
+private const val ITEM_COUNT = 5
 
-class OnboardingPagerAdapter(private val activity: OnboardingActivity, private val viewPager: ViewPager2) : FragmentStateAdapter(activity) {
-    private val isNewDev = false
+class OnboardingPagerAdapter(private val activity: OnboardingActivity) : FragmentStateAdapter(activity) {
+    private var isNewDev = false
 
     private fun isDev(): Boolean {
         return if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -39,17 +40,53 @@ class OnboardingPagerAdapter(private val activity: OnboardingActivity, private v
     }
 
     override fun getItemCount(): Int {
-        return NUM_PAGES
+        return ITEM_COUNT
     }
 
     override fun createFragment(position: Int): Fragment {
+        Timber.v("createFragment")
+        Timber.d("Position: ${position}")
+        Timber.d("Item Count: ${itemCount}")
+
+        val introFragment = OnboardingIntroFragment(activity)
+        val mockLocationFragment = OnboardingMockLocationFragment(activity)
+        val endFragment = OnboardingEndFragment(activity)
+
         return when (position) {
-            0 -> OnboardingIntroFragment()
-            1 -> OnboardingDeveloperModeFragment()
-            2 -> OnboardingMockLocationFragment()
-            3 -> OnboardingLocationPermissionFragment()
-            4 -> OnboardingEndFragment(activity)
-            else -> OnboardingIntroFragment()
+            0 -> introFragment
+            1 -> {
+                if (isDev()) {
+                    mockLocationFragment
+                } else {
+                    isNewDev = true
+
+                    OnboardingDeveloperModeFragment()
+                }
+            }
+            2 -> {
+                if (isNewDev) {
+                    mockLocationFragment
+                } else {
+                    if (hasLocationPermission()) {
+                        endFragment
+                    } else {
+                        OnboardingLocationPermissionFragment()
+                    }
+                }
+            }
+            3 -> {
+                if (isNewDev) {
+                    if (hasLocationPermission()) {
+                        endFragment
+                    } else {
+                        OnboardingLocationPermissionFragment()
+                    }
+                } else {
+                    endFragment
+                }
+            }
+            4 -> endFragment
+            else -> introFragment
         }
     }
 }
