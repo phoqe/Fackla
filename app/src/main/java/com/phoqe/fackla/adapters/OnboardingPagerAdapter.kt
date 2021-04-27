@@ -6,17 +6,28 @@ import android.provider.Settings
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.phoqe.fackla.activities.OnboardingActivity
 import com.phoqe.fackla.fragments.*
 
 private const val NUM_PAGES = 5
 
-class OnboardingPagerAdapter(private val activity: OnboardingActivity) : FragmentStateAdapter(activity) {
-    private fun isDevMode(): Boolean {
+class OnboardingPagerAdapter(private val activity: OnboardingActivity, private val viewPager: ViewPager2) : FragmentStateAdapter(activity) {
+    private val isNewDev = false
+
+    private fun isDev(): Boolean {
         return if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            Settings.Secure.getInt(activity.contentResolver, Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0) == 1
+            Settings.Secure.getInt(
+                    activity.contentResolver,
+                    Settings.Global.DEVELOPMENT_SETTINGS_ENABLED,
+                    0
+            ) == 1
         } else {
-            Settings.Secure.getInt(activity.contentResolver, Settings.Secure.DEVELOPMENT_SETTINGS_ENABLED, 0) == 1
+            Settings.Secure.getInt(
+                    activity.contentResolver,
+                    Settings.Secure.DEVELOPMENT_SETTINGS_ENABLED,
+                    0
+            ) == 1
         }
     }
 

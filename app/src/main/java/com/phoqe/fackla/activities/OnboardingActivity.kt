@@ -34,7 +34,7 @@ class OnboardingActivity : FragmentActivity(), OnboardingEndFragment.OnGetStarte
         setContentView(binding.root)
 
         viewPager = binding.root
-        viewPager.adapter = OnboardingPagerAdapter(this)
+        viewPager.adapter = OnboardingPagerAdapter(this, viewPager)
     }
 
     override fun onBackPressed() {

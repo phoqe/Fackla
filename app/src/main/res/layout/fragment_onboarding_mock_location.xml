@@ -24,4 +24,10 @@
         android:text="@string/onboarding_mock_location_button"
     />
 
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+        android:text="@string/onboarding_mock_location_caption" />
+
 </LinearLayout>

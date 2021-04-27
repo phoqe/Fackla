@@ -22,4 +22,10 @@
         android:layout_height="wrap_content"
         android:text="@string/onboarding_location_permission_button" />
 
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+        android:text="@string/onboarding_location_permission_caption" />
+
 </LinearLayout>
