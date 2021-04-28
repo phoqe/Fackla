@@ -38,4 +38,9 @@
 
     <string name="onboarding_location_permission_dialog_title">Tillgång till plats krävs</string>
     <string name="onboarding_location_permission_dialog_message">Tillgång till din plats krävs för att Fackla ska fungera. Tryck Hantera och sedan Behörigheter och tillåt Fackla att läsa din plats.\n\nOm du inte vill att Fackla ska läsa din plats, använd inte appen.</string>
+    <string name="onboarding_location_permission_dialog_negative_button">Avbryt</string>
+    <string name="onboarding_location_permission_dialog_positive_button">Hantera</string>
+
+    <string name="main_no_mock_location_app_snackbar_text">Välj Fackla som din app för påhittad plats.</string>
+    <string name="main_no_mock_location_app_snackbar_action">Hantera</string>
 </resources>

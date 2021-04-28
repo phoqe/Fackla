@@ -63,14 +63,6 @@ class OnboardingActivity : FragmentActivity(),
         skipSaveProgress = false
     }
 
-    override fun onBackPressed() {
-        if (viewPager.currentItem == 0) {
-            super.onBackPressed()
-        } else {
-            viewPager.currentItem += 1
-        }
-    }
-
     override fun onGetStartedClick() {
         viewPager.currentItem += 1
     }

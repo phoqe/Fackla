@@ -40,4 +40,9 @@
 
     <string name="onboarding_location_permission_dialog_title">Location access required</string>
     <string name="onboarding_location_permission_dialog_message">Access to your location is required for Fackla to function. Tap Manage then Permissions and allow Fackla to read your location.\n\nIf you don’t want to allow Fackla to read your location, do not use this app.</string>
+    <string name="onboarding_location_permission_dialog_negative_button">Cancel</string>
+    <string name="onboarding_location_permission_dialog_positive_button">Manage</string>
+    
+    <string name="main_no_mock_location_app_snackbar_text">Select Fackla as your mock location app.</string>
+    <string name="main_no_mock_location_app_snackbar_action">Manage</string>
 </resources>

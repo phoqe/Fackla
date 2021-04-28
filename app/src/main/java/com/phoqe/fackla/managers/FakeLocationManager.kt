@@ -6,6 +6,7 @@ import android.content.Intent
 import android.location.Location
 import android.location.LocationManager
 import android.os.SystemClock
+import android.widget.Toast
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.phoqe.fackla.events.FakeLocationManagerStartEvent
 import com.phoqe.fackla.events.FakeLocationManagerStopEvent

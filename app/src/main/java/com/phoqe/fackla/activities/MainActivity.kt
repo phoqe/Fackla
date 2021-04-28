@@ -1,12 +1,15 @@
 package com.phoqe.fackla.activities
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.res.Configuration
 import android.location.Location
 import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.mapboxsdk.geometry.LatLng
@@ -18,6 +21,7 @@ import com.mapbox.mapboxsdk.location.modes.RenderMode
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.localization.LocalizationPlugin
+import com.phoqe.fackla.R
 import com.phoqe.fackla.databinding.ActivityMainBinding
 import com.phoqe.fackla.events.FakeLocationManagerStartEvent
 import com.phoqe.fackla.events.FakeLocationManagerStopEvent
@@ -126,7 +130,18 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
             lastLocBeforeFaking = map.locationComponent.lastKnownLocation
         }
 
-        FakeLocationManager.getInstance(this).start(point)
+        try {
+            FakeLocationManager.getInstance(this).start(point)
+        } catch (ex: SecurityException) {
+            Snackbar.make(
+                    binding.mapView,
+                    getString(R.string.main_no_mock_location_app_snackbar_text),
+                    Snackbar.LENGTH_LONG)
+                    .setAction(getString(R.string.main_no_mock_location_app_snackbar_action)) {
+                        startActivity(Intent(android.provider.Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS))
+                    }
+                    .show()
+        }
     }
 
     private fun stopFakingLocation() {

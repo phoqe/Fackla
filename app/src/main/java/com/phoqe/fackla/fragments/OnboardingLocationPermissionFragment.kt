@@ -53,10 +53,10 @@ class OnboardingLocationPermissionFragment(private val activity: OnboardingActiv
             MaterialAlertDialogBuilder(it)
                     .setTitle(R.string.onboarding_location_permission_dialog_title)
                     .setMessage(R.string.onboarding_location_permission_dialog_message)
-                    .setNegativeButton("Cancel") { dialog, which ->
+                    .setNegativeButton(getString(R.string.onboarding_location_permission_dialog_negative_button)) { dialog, which ->
                         dialog.cancel()
                     }
-                    .setPositiveButton("Manage") { dialog, which ->
+                    .setPositiveButton(getString(R.string.onboarding_location_permission_dialog_positive_button)) { dialog, which ->
                         val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
                         val data = Uri.fromParts("package", requireContext().packageName, null)
 

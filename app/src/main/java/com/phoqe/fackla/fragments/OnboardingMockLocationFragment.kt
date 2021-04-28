@@ -23,11 +23,7 @@ class OnboardingMockLocationFragment(private val listener: OnSelectMockAppClickL
         _binding = FragmentOnboardingMockLocationBinding.inflate(layoutInflater, container, false)
 
         binding.btnSelectMockLocApp.setOnClickListener {
-            val intent = Intent(android.provider.Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS)
-
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-
-            startActivity(intent)
+            startActivity(Intent(android.provider.Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS))
 
             listener.onSelectMockAppClick()
         }
