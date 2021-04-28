@@ -1,14 +1,20 @@
 package com.phoqe.fackla.activities
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.location.Location
 import android.location.LocationManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.view.View
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.mapbox.android.core.permissions.PermissionsManager
@@ -41,19 +47,9 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
     private lateinit var map: MapboxMap
     private lateinit var locMgr: LocationManager
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        locMgr = getSystemService(LOCATION_SERVICE) as LocationManager
-
-        setContentView(binding.root)
-
-        binding.efabStopFakingLocation.setOnClickListener {
-            stopFakingLocation()
-        }
-
-        configMapView(savedInstanceState)
+    private fun hasPerms(): Boolean {
+        return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
     }
 
     private fun getMapStyle(): String {
@@ -109,9 +105,12 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
                 .build()
 
         map.locationComponent.apply {
-            activateLocationComponent(activationOptions)
+            if (hasPerms()) {
+                activateLocationComponent(activationOptions)
 
-            isLocationComponentEnabled = true
+                isLocationComponentEnabled = true
+            }
+
             cameraMode = CameraMode.TRACKING
             renderMode = RenderMode.NORMAL
         }
@@ -125,22 +124,54 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
         map.locationComponent.forceLocationUpdate(locUpd)
     }
 
+    private fun showNoMockLocAppDialog() {
+        MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.main_no_mock_loc_app_dialog_title)
+                .setMessage(R.string.main_no_mock_loc_app_message)
+                .setCancelable(false)
+                .setNegativeButton(R.string.main_no_loc_app_negative_button) { dialog, _ ->
+                    dialog.cancel()
+                }
+                .setPositiveButton(R.string.main_no_loc_app_positive_button) { _, _ ->
+                    startActivity(Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS))
+                }
+                .show()
+    }
+
+    private fun showNoPermsDialog() {
+        MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.main_no_perms_dialog_title)
+                .setMessage(R.string.main_no_perms_dialog_message)
+                .setCancelable(false)
+                .setNegativeButton(R.string.main_no_perms_dialog_negative_button) { dialog, _ ->
+                    dialog.cancel()
+                }
+                .setPositiveButton(R.string.main_no_perms_dialog_positive_button) { _, _ ->
+                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                    val data = Uri.fromParts("package", packageName, null)
+
+                    intent.setData(data)
+
+                    startActivity(intent)
+                }
+                .show()
+    }
+
     private fun startFakingLocation(point: LatLng) {
-        if (!isFakingLocation) {
+        if (!hasPerms()) {
+            showNoPermsDialog()
+
+            return
+        }
+
+        if (!isFakingLocation && map.locationComponent.isLocationComponentActivated) {
             lastLocBeforeFaking = map.locationComponent.lastKnownLocation
         }
 
         try {
             FakeLocationManager.getInstance(this).start(point)
         } catch (ex: SecurityException) {
-            Snackbar.make(
-                    binding.mapView,
-                    getString(R.string.main_no_mock_location_app_snackbar_text),
-                    Snackbar.LENGTH_LONG)
-                    .setAction(getString(R.string.main_no_mock_location_app_snackbar_action)) {
-                        startActivity(Intent(android.provider.Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS))
-                    }
-                    .show()
+            showNoMockLocAppDialog()
         }
     }
 
@@ -166,7 +197,24 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
         binding.efabStopFakingLocation.visibility = View.GONE
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        locMgr = getSystemService(LOCATION_SERVICE) as LocationManager
+
+        setContentView(binding.root)
+
+        binding.efabStopFakingLocation.setOnClickListener {
+            stopFakingLocation()
+        }
+
+        configMapView(savedInstanceState)
+    }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
         permsMgr.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 

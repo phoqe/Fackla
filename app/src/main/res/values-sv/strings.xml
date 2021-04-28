@@ -23,12 +23,12 @@
     <string name="onboarding_developer_mode_caption">I vanliga fall är det under Programvaruinformation såvida inte annat anges.</string>
 
     <string name="onboarding_mock_location_title">Välj app för påhittad plats</string>
-    <string name="onboarding_mock_location_body">Med utvecklarläget påslaget, måste du välja Fackla som din app för påhittad plats. Tryck ”Välj app…” för att välja Fackla som din app för påhittad plats.</string>
+    <string name="onboarding_mock_location_body">Med utvecklarläget påslaget, måste du välja Fackla som din app för påhittad plats. Tryck ”Välj app…” och välj Fackla som din app för påhittad plats.</string>
     <string name="onboarding_mock_location_button">Välj app…</string>
     <string name="onboarding_mock_location_caption">Beroende på din enhet kan du behöva söka eller skrolla för att hitta alternativet.</string>
 
-    <string name="onboarding_location_permission_title">Behörighet till att läsa din plats</string>
-    <string name="onboarding_location_permission_body">Din plats läs för att visa din position på en karta och förfalska din plats i andra appar. Fackla kan inte fungera utan tillåtelse att läsa din plats.</string>
+    <string name="onboarding_location_permission_title">Behörighet för tillgång till din plats</string>
+    <string name="onboarding_location_permission_body">Din plats behövs för att visa din position på en karta och förfalska din plats i andra appar. Fackla kan inte fungera utan tillgång till din plats.</string>
     <string name="onboarding_location_permission_button">Granska behörighet…</string>
     <string name="onboarding_location_permission_caption">Din platsdata skickas inte till Fackla, den stannar på din enhet.</string>
 
@@ -43,4 +43,17 @@
 
     <string name="main_no_mock_location_app_snackbar_text">Välj Fackla som din app för påhittad plats.</string>
     <string name="main_no_mock_location_app_snackbar_action">Hantera</string>
+
+    <string name="main_no_perms_snackbar_text">Tillåt att Fackla får tillgång till din plats.</string>
+    <string name="main_no_perms_snackbar_action">Hantera</string>
+
+    <string name="main_no_mock_loc_app_dialog_title">Välj app för påhittad plats</string>
+    <string name="main_no_mock_loc_app_message">Med utvecklarläget påslaget, måste du välja Fackla som din app för påhittad plats. Tryck Hantera och välj Fackla som din app för påhittad plats.</string>
+    <string name="main_no_loc_app_positive_button">Hantera</string>
+    <string name="main_no_loc_app_negative_button">Avbryt</string>
+
+    <string name="main_no_perms_dialog_title">Tillgång till plats krävs</string>
+    <string name="main_no_perms_dialog_message">Tillgång till din plats krävs för att Fackla ska fungera. Tryck Hantera och sedan Behörigheter och tillåt Fackla att läsa din plats.\n\nOm du inte vill att Fackla ska läsa din plats, använd inte appen.</string>
+    <string name="main_no_perms_dialog_positive_button">Hantera</string>
+    <string name="main_no_perms_dialog_negative_button">Avbryt</string>
 </resources>
