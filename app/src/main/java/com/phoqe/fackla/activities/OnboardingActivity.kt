@@ -12,8 +12,10 @@ import com.phoqe.fackla.fragments.*
 
 class OnboardingActivity : FragmentActivity(),
         OnboardingIntroFragment.OnGetStartedClickListener,
+        OnboardingDeveloperModeFragment.OnBecomeDeveloperClickListener,
         OnboardingEndFragment.onStartClickListener,
-        OnboardingMockLocationFragment.OnSelectMockAppClickListener{
+        OnboardingLocationPermissionFragment.OnGrantedPermissionListener,
+        OnboardingMockLocationFragment.OnSelectMockAppClickListener {
     private lateinit var prefs: SharedPreferences
     private lateinit var binding: ActivityOnboardingBinding
     private lateinit var viewPager: ViewPager2
@@ -22,9 +24,14 @@ class OnboardingActivity : FragmentActivity(),
 
     private fun saveProgress(currentItem: Int = viewPager.currentItem) {
         with(prefs.edit()) {
-            putInt("onboarding_item", currentItem)
+            putInt("last_onboarding_item", currentItem)
             apply()
         }
+    }
+
+    private fun incrementPagerSilently() {
+        skipSaveProgress = true
+        saveProgress(viewPager.currentItem + 1)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +45,12 @@ class OnboardingActivity : FragmentActivity(),
         viewPager = binding.root
         viewPager.adapter = OnboardingPagerAdapter(this)
         viewPager.isUserInputEnabled = false
-        viewPager.currentItem = prefs.getInt("onboarding_item", 0)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        viewPager.currentItem = prefs.getInt("last_onboarding_item", 0)
     }
 
     override fun onPause() {
@@ -47,18 +59,20 @@ class OnboardingActivity : FragmentActivity(),
         if (!skipSaveProgress) {
             saveProgress()
         }
+
+        skipSaveProgress = false
     }
 
     override fun onBackPressed() {
         if (viewPager.currentItem == 0) {
             super.onBackPressed()
         } else {
-            viewPager.currentItem = viewPager.currentItem - 1
+            viewPager.currentItem += 1
         }
     }
 
     override fun onGetStartedClick() {
-        viewPager.currentItem = 1
+        viewPager.currentItem += 1
     }
 
     override fun onStartClick() {
@@ -72,7 +86,14 @@ class OnboardingActivity : FragmentActivity(),
     }
 
     override fun onSelectMockAppClick() {
-        skipSaveProgress = true
-        saveProgress(2)
+        incrementPagerSilently()
+    }
+
+    override fun onBecomeDeveloperClick() {
+        incrementPagerSilently()
+    }
+
+    override fun onGrantedPermission() {
+        viewPager.currentItem += 1
     }
 }

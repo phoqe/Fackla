@@ -49,8 +49,10 @@ class OnboardingPagerAdapter(private val activity: OnboardingActivity) : Fragmen
         Timber.d("Item Count: ${itemCount}")
 
         val introFragment = OnboardingIntroFragment(activity)
+        val devModeFragment = OnboardingDeveloperModeFragment(activity)
         val mockLocationFragment = OnboardingMockLocationFragment(activity)
         val endFragment = OnboardingEndFragment(activity)
+        val locPermFragment = OnboardingLocationPermissionFragment(activity)
 
         return when (position) {
             0 -> introFragment
@@ -60,7 +62,7 @@ class OnboardingPagerAdapter(private val activity: OnboardingActivity) : Fragmen
                 } else {
                     isNewDev = true
 
-                    OnboardingDeveloperModeFragment()
+                    devModeFragment
                 }
             }
             2 -> {
@@ -70,7 +72,7 @@ class OnboardingPagerAdapter(private val activity: OnboardingActivity) : Fragmen
                     if (hasLocationPermission()) {
                         endFragment
                     } else {
-                        OnboardingLocationPermissionFragment()
+                        locPermFragment
                     }
                 }
             }
@@ -79,7 +81,7 @@ class OnboardingPagerAdapter(private val activity: OnboardingActivity) : Fragmen
                     if (hasLocationPermission()) {
                         endFragment
                     } else {
-                        OnboardingLocationPermissionFragment()
+                        locPermFragment
                     }
                 } else {
                     endFragment
