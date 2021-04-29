@@ -6,6 +6,10 @@ Feel free to interact with the project as per the open-source license.
 
 ## Remarks
 
+### Developer Options
+
+Navigating to Developer Options in the device’s settings will destroy the running service. This is a limitation of mock location apps. Presumably Android gets rid of them because the user might decide to switch mock location apps.
+
 ### Versions
 
 - Minimum SDK: 16
@@ -18,6 +22,7 @@ Feel free to interact with the project as per the open-source license.
 - `ACCESS_MOCK_LOCATION`: Allows the app to function as a mock location app, i.e. can be selected in the Developer Options of the device.
 - `ACCESS_BACKGROUND_LOCATION`: Allows the app to use a fake location in the background. 
 - `FOREGROUND_SERVICE`: The app starts a foreground service when the user changed their location.
+- `ACCESS_BOOT_COMPLETED`: Prior to device reboot, if the user was running the service it will start again. 
 
 ## Building
 
