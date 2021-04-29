@@ -16,7 +16,8 @@ Feel free to interact with the project as per the open-source license.
 - `ACCESS_FINE_LOCATION`
 - `ACCESS_COARSE_LOCATION`
 - `ACCESS_MOCK_LOCATION`
-- `ACCESS_FOREGROUND_LOCATION`
+- `ACCESS_BACKGROUND_LOCATION`
+- `FOREGROUND_SERVICE`
 
 ## Usage
 
