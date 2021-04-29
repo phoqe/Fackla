@@ -7,6 +7,7 @@ import android.location.Location
 import android.location.LocationManager
 import android.os.SystemClock
 import android.widget.Toast
+import androidx.preference.PreferenceManager
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.phoqe.fackla.events.FakeLocationManagerStartEvent
 import com.phoqe.fackla.events.FakeLocationManagerStopEvent
@@ -21,6 +22,7 @@ class FakeLocationManager(private val context: Context) {
     private val intent = Intent(context, FakeLocationNotificationService::class.java)
     private val locMgr = context.getSystemService(Context.LOCATION_SERVICE) as
             LocationManager
+    private val prefs = PreferenceManager.getDefaultSharedPreferences(context)
 
     companion object {
         @SuppressLint("StaticFieldLeak")
@@ -67,6 +69,17 @@ class FakeLocationManager(private val context: Context) {
 
         val fakeLocation = createFakeLocation(testProviders.first(), point)
 
+        with(prefs.edit()) {
+            putBoolean("fake_loc_service_started", true)
+
+            // Converted to long to avoid losing precision.
+            putLong("fake_lat", point.latitude.toLong())
+            putLong("fake_long", point.longitude.toLong())
+            putLong("fake_alt", point.altitude.toLong())
+
+            apply()
+        }
+
         EventBus.getDefault().post(FakeLocationManagerStartEvent(fakeLocation))
 
         callback?.let { it(fakeLocation) }
@@ -83,6 +96,15 @@ class FakeLocationManager(private val context: Context) {
         }
 
         context.stopService(intent)
+
+        with(prefs.edit()) {
+            remove("fake_loc_service_started")
+            remove("fake_lat")
+            remove("fake_long")
+            remove("fake_alt")
+
+            apply()
+        }
 
         EventBus.getDefault().postSticky(FakeLocationManagerStopEvent())
 
