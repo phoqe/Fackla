@@ -13,6 +13,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
     private lateinit var binding: ActivityMainBinding
     private lateinit var map: MapboxMap
     private lateinit var locMgr: LocationManager
+    private lateinit var noPermsDialog: AlertDialog
 
     private fun hasPerms(): Boolean {
         return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
@@ -138,32 +140,7 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
                 .show()
     }
 
-    private fun showNoPermsDialog() {
-        MaterialAlertDialogBuilder(this)
-                .setTitle(R.string.main_no_perms_dialog_title)
-                .setMessage(R.string.main_no_perms_dialog_message)
-                .setCancelable(false)
-                .setNegativeButton(R.string.main_no_perms_dialog_negative_button) { dialog, _ ->
-                    dialog.cancel()
-                }
-                .setPositiveButton(R.string.main_no_perms_dialog_positive_button) { _, _ ->
-                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                    val data = Uri.fromParts("package", packageName, null)
-
-                    intent.setData(data)
-
-                    startActivity(intent)
-                }
-                .show()
-    }
-
     private fun startFakingLocation(point: LatLng) {
-        if (!hasPerms()) {
-            showNoPermsDialog()
-
-            return
-        }
-
         if (!isFakingLocation && map.locationComponent.isLocationComponentActivated) {
             lastLocBeforeFaking = map.locationComponent.lastKnownLocation
         }
@@ -202,6 +179,19 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         locMgr = getSystemService(LOCATION_SERVICE) as LocationManager
+        noPermsDialog = MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.main_no_perms_dialog_title)
+                .setMessage(R.string.main_no_perms_dialog_message)
+                .setCancelable(false)
+                .setPositiveButton(R.string.main_no_perms_dialog_positive_button) { dialog, _ ->
+                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                    val data = Uri.fromParts("package", packageName, null)
+
+                    intent.setData(data)
+
+                    startActivity(intent)
+                }
+                .show()
 
         setContentView(binding.root)
 
@@ -245,6 +235,14 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
         super.onResume()
 
         binding.mapView.onResume()
+
+        if (!hasPerms()) {
+            noPermsDialog.show()
+
+            return
+        } else {
+            noPermsDialog.cancel()
+        }
     }
 
     override fun onPause() {
