@@ -1,7 +1,7 @@
 # Fackla
 
 Fackla is an open-source Android app written in Kotlin featuring mock locations with an intuitive UI from Mapbox.
-The project is a personal introduction to designing and building apps with Kotlin and Material Design.
+The project is more of a personal introduction to designing and building apps with Kotlin and Material Design than a real product.
 Feel free to interact with the project as per the open-source license.
 
 ## Remarks
@@ -13,15 +13,27 @@ Feel free to interact with the project as per the open-source license.
 
 ### Permissions
 
-- `ACCESS_FINE_LOCATION`
-- `ACCESS_COARSE_LOCATION`
-- `ACCESS_MOCK_LOCATION`
-- `ACCESS_BACKGROUND_LOCATION`
-- `FOREGROUND_SERVICE`
+- `ACCESS_FINE_LOCATION`: Displaying the user’s position on the main map as well as settings test providers for the location manager. 
+- `ACCESS_COARSE_LOCATION`: Same as above.
+- `ACCESS_MOCK_LOCATION`: Allows the app to function as a mock location app, i.e. can be selected in the Developer Options of the device.
+- `ACCESS_BACKGROUND_LOCATION`: Allows the app to use a fake location in the background. 
+- `FOREGROUND_SERVICE`: The app starts a foreground service when the user changed their location.
+
+## Building
+
+Visit the [Mapbox Installation Guide](https://docs.mapbox.com/android/maps/guides/install). That’s probably all you need.
 
 ## Usage
 
 Long press a point on the map to change your location to the point’s coordinates. Fackla uses a foreground service to maintain the mock location in other apps.
+
+## Contributing
+
+Use **Issues** for any questions, problems, bugs, or feature requests. If you’ve already fixed something, submit a **Pull Request**. There is no style guide or anything resembling a Contributors Guide. Include what you deem necessary.
+
+## Governance
+
+Fackla isn’t a big project. The Mapbox account as well as the Google Play Developer account is controlled by [@phoqe](https://github.com/phoqe). Everything else is in this repository.
 
 ## Future Improvements
 
