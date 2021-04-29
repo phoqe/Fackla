@@ -1,4 +1,4 @@
-# Fackla – Prevent Work From Tracking You
+# Fackla
 
 Fackla is an open-source Android app written in Kotlin featuring mock locations with an intuitive UI from Mapbox.
 The project is a personal introduction to designing and building apps with Kotlin and Material Design.
@@ -21,7 +21,7 @@ Feel free to interact with the project as per the open-source license.
 
 ## Usage
 
-Long press a point on the map to change your location to the point’s coordinates.
+Long press a point on the map to change your location to the point’s coordinates. Fackla uses a foreground service to maintain the mock location in other apps.
 
 ## Future Improvements
 
