@@ -17,7 +17,7 @@ Navigating to Developer Options in the device’s settings will destroy the runn
 
 ### Permissions
 
-- `ACCESS_FINE_LOCATION`: Displaying the user’s position on the main map as well as settings test providers for the location manager. 
+- `ACCESS_FINE_LOCATION`: Displaying the user’s position on the main map as well as setting test providers for the location manager. 
 - `ACCESS_COARSE_LOCATION`: Same as above.
 - `ACCESS_MOCK_LOCATION`: Allows the app to function as a mock location app, i.e. can be selected in the Developer Options of the device.
 - `ACCESS_BACKGROUND_LOCATION`: Allows the app to use a fake location in the background. 
