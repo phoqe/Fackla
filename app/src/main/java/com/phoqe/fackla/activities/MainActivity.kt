@@ -191,7 +191,7 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
 
                     startActivity(intent)
                 }
-                .show()
+                .create()
 
         setContentView(binding.root)
 
