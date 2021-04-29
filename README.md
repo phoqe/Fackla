@@ -1,7 +1,7 @@
 # Fackla
 
 Fackla is an open-source Android app written in Kotlin featuring mock locations with an intuitive UI from Mapbox.
-The project is more of a personal introduction to designing and building apps with Kotlin and Material Design than a real product.
+The project is more of a personal introduction to designing and building apps with Material Design and Kotlin than a real product.
 Feel free to interact with the project as per the open-source license.
 
 ## Remarks
