@@ -28,7 +28,7 @@ Long press a point on the map to change your location to the point’s coordinat
 ### Geocoding
 
 When the Mapbox Search SDK for Android is out of beta, the notification content could include the physical address for the virtual location’s coordinates.
-Including the Search SDK will require changing the minimum SDK version to 21.
+Including the Search SDK will require changing the minimum SDK version to 21. The current state of the SDK doesn’t yield accurate results (or any for that matter), but that might change.
 
 ## Attribution
 
