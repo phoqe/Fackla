@@ -238,10 +238,12 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
 
         if (!hasPerms()) {
             noPermsDialog.show()
-
-            return
         } else {
             noPermsDialog.cancel()
+
+            binding.mapView.getMapAsync { map ->
+                map.style?.let { enableLocationComponent(it) }
+            }
         }
     }
 
