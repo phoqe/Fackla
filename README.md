@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="640" src="https://user-images.githubusercontent.com/7033377/116675312-fdf01600-a9a5-11eb-9d0a-3eee8c426d0a.png" alt="Logo Banner">
+  <img width="320" src="https://user-images.githubusercontent.com/7033377/116675312-fdf01600-a9a5-11eb-9d0a-3eee8c426d0a.png" alt="Logo Banner">
 </p>
 
 Fackla is an open-source Android app written in Kotlin featuring mock locations with an intuitive UI from Mapbox.
