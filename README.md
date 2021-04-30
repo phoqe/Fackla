@@ -1,6 +1,4 @@
-<p align="center">
-  <img width="320" src="https://user-images.githubusercontent.com/7033377/116675312-fdf01600-a9a5-11eb-9d0a-3eee8c426d0a.png" alt="Logo Banner">
-</p>
+# Fackla
 
 Fackla is an open-source Android app written in Kotlin featuring mock locations with an intuitive UI from Mapbox.
 The project is more of a personal introduction to designing and building apps with Material Design and Kotlin than a real product.
@@ -30,7 +28,7 @@ Navigating to Developer Options in the device’s settings will destroy the runn
 
 ## Building
 
-Visit the [Mapbox Installation Guide](https://docs.mapbox.com/android/maps/guides/install). You’ll need a secret access token in your `gradle.properties` file. It’s read from the project-level `build.gradle` file. Make sure to keep it secret.
+Building Fackla from source requires a Mapbox account as well as a secret access token. Visit the [Mapbox Installation Guide](https://docs.mapbox.com/android/maps/guides/install) for further instructions. You’ll need to add your secret access token in the `gradle.properties` file. It’s read from the project-level `build.gradle` file. Make sure to keep it *secret*.
 
 ## Usage
 
