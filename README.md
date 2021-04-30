@@ -6,7 +6,9 @@ Feel free to interact with the project as per the open-source license.
 
 ## Remarks
 
-### Developer Options
+### Limitations
+
+#### Developer Options
 
 Navigating to Developer Options in the device’s settings will destroy the running service. This is a limitation of mock location apps. Presumably Android gets rid of them because the user might decide to switch mock location apps.
 
@@ -26,11 +28,11 @@ Navigating to Developer Options in the device’s settings will destroy the runn
 
 ## Building
 
-Visit the [Mapbox Installation Guide](https://docs.mapbox.com/android/maps/guides/install). That’s probably all you need.
+Visit the [Mapbox Installation Guide](https://docs.mapbox.com/android/maps/guides/install). You’ll need a secret access token in your `gradle.properties` file. It’s read from the project-level `build.gradle` file. Make sure to keep it secret.
 
 ## Usage
 
-Long press a point on the map to change your location to the point’s coordinates. Fackla uses a foreground service to maintain the mock location in other apps.
+Long press a point on the map to change your location to the point’s coordinates.
 
 ## Contributing
 
@@ -45,7 +47,7 @@ Fackla isn’t a big project. The Mapbox account as well as the Google Play Deve
 ### Geocoding
 
 When the Mapbox Search SDK for Android is out of beta, the notification content text could include the physical address for the virtual location’s coordinates.
-Including the Search SDK will require changing the minimum SDK version to 21. The current state of the SDK doesn’t yield accurate results (or any for that matter), but that might change.
+Including the Search SDK will require changing the minimum SDK version to 21. The current state of the SDK doesn’t yield accurate results, but that might change.
 
 ## Attribution
 
