@@ -5,7 +5,7 @@
     <string name="fake_location_channel_description">Denna typ av notis tillåter appen att använda en falsk plats, även i andra appar.</string>
 
     <string name="fake_location_notification_title">Falsk plats</string>
-    <string name="fake_location_notification_description">Din plats är förfalskad, även i andra appar.</string>
+    <string name="fake_location_notification_description">Du använder en falsk plats i alla appar.</string>
     <string name="fake_location_notification_action_title">Sluta använda falsk plats</string>
 
     <string name="on_explanation_needed_toast_text">Tillåt för att visa din plats på kartan.</string>

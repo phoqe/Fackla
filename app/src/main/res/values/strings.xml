@@ -6,7 +6,7 @@
     <string name="fake_location_channel_description">This type of notification allows the app to use a fake location, even in other apps.</string>
 
     <string name="fake_location_notification_title">Fake Location</string>
-    <string name="fake_location_notification_description">Your location is faked, even in other apps.</string>
+    <string name="fake_location_notification_description">You’re using a fake location in all apps.</string>
     <string name="fake_location_notification_action_title">Stop Faking Location</string>
 
     <string name="mapbox_access_token" translatable="false">pk.eyJ1IjoicGhvcWUiLCJhIjoiY2tua2V1dm1rMGFnODJ1bzA4aDAzbzVjNiJ9.qhP4X_XpdzIPsHawKbJAKQ</string>
