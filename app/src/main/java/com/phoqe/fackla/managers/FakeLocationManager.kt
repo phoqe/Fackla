@@ -15,6 +15,8 @@ import com.phoqe.fackla.events.FakeLocationManagerStartEvent
 import com.phoqe.fackla.events.FakeLocationManagerStopEvent
 import com.phoqe.fackla.services.FakeLocationNotificationService
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import timber.log.Timber
@@ -28,6 +30,8 @@ class FakeLocationManager(private val context: Context) {
     private val locMgr = context.getSystemService(Context.LOCATION_SERVICE) as
             LocationManager
     private val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+    private val handler = Handler()
+    private lateinit var runnable: Runnable
 
     companion object {
         @SuppressLint("StaticFieldLeak")
@@ -59,12 +63,18 @@ class FakeLocationManager(private val context: Context) {
     fun start(point: LatLng, callback: ((Location) -> Unit)? = null) {
         Timber.v("start")
 
-        setTestProviders()
+        runnable = Runnable {
+            setTestProviders()
 
-        for (provider in testProviders) {
-            locMgr.setTestProviderLocation(provider, createFakeLocation(provider, point))
-            locMgr.setTestProviderEnabled(provider, true)
+            for (provider in testProviders) {
+                locMgr.setTestProviderLocation(provider, createFakeLocation(provider, point))
+                locMgr.setTestProviderEnabled(provider, true)
+            }
+
+            handler.postDelayed(runnable, 1000)
         }
+
+        handler.post(runnable)
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             context.startForegroundService(intent)
@@ -95,6 +105,8 @@ class FakeLocationManager(private val context: Context) {
      */
     fun stop(callback: (() -> Unit)? = null) {
         Timber.v("stop")
+
+        handler.removeCallbacks(runnable)
 
         for (provider in testProviders) {
             locMgr.removeTestProvider(provider)
