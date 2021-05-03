@@ -85,7 +85,7 @@ class FakeLocationManager(private val context: Context) {
         val fakeLocation = createFakeLocation(testProviders.first(), point)
 
         with(prefs.edit()) {
-            putBoolean("fake_loc_service_started", true)
+            putBoolean("fake_loc_service_active", true)
 
             // Converted to long to avoid losing precision.
             putLong("fake_lat", point.latitude.toLong())
@@ -115,7 +115,7 @@ class FakeLocationManager(private val context: Context) {
         context.stopService(intent)
 
         with(prefs.edit()) {
-            remove("fake_loc_service_started")
+            remove("fake_loc_service_active")
             remove("fake_lat")
             remove("fake_long")
             remove("fake_alt")
