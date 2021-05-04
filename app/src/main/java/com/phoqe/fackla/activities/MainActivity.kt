@@ -156,7 +156,7 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
         FakeLocationManager.getInstance(this).stop()
     }
 
-    @Subscribe(threadMode = ThreadMode.POSTING, sticky = true)
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     fun onFakeLocationManagerStart(event: FakeLocationManagerStartEvent) {
         isFakingLocation = true
 
@@ -165,7 +165,7 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
         binding.efabStopFakingLocation.visibility = View.VISIBLE
     }
 
-    @Subscribe(threadMode = ThreadMode.POSTING, sticky = true)
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     fun onFakeLocationManagerStop(event: FakeLocationManagerStopEvent) {
         isFakingLocation = false
 
