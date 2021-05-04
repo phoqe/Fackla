@@ -87,10 +87,16 @@ class FakeLocationManager(private val context: Context) {
         with(prefs.edit()) {
             putBoolean("fake_loc_service_active", true)
 
-            // Converted to long to avoid losing precision.
-            putLong("fake_lat", point.latitude.toLong())
-            putLong("fake_long", point.longitude.toLong())
-            putLong("fake_alt", point.altitude.toLong())
+            val fakeLat = java.lang.Double.doubleToRawLongBits(point.latitude)
+            val fakeLong = java.lang.Double.doubleToRawLongBits(point.longitude)
+            val fakeAlt = java.lang.Double.doubleToRawLongBits(point.altitude)
+
+            Timber.d(point.toString())
+            Timber.d("fakeLat=$fakeLat;fakeLong=$fakeLong;fakeAlt=$fakeAlt")
+
+            putLong("fake_lat", fakeLat)
+            putLong("fake_long", fakeLong)
+            putLong("fake_alt", fakeAlt)
 
             apply()
         }
