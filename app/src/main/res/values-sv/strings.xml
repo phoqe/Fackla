@@ -34,7 +34,7 @@
 
     <string name="onboarding_end_title">Tryck och håll på kartan</string>
     <string name="onboarding_end_body">Du kan ändra din plats genom att trycka och hålla på en punkt på kartan. När du är klar, tryck ”Sluta använda falsk plats” för att återställa din plats.</string>
-    <string name="onboarding_end_button">Kom igång</string>
+    <string name="onboarding_end_button">Börja använda Fackla</string>
 
     <string name="onboarding_location_permission_dialog_title">Tillgång till plats krävs</string>
     <string name="onboarding_location_permission_dialog_message">Tillgång till din plats krävs för att Fackla ska fungera. Tryck Hantera och sedan Behörigheter och tillåt Fackla att läsa din plats.\n\nOm du inte vill att Fackla ska läsa din plats, använd inte appen.</string>
