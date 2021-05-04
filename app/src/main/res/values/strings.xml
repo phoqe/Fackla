@@ -36,7 +36,7 @@
 
     <string name="onboarding_end_title">Tap and Hold the Map</string>
     <string name="onboarding_end_body">You can change your location by tapping and holding a point on the map. When you’re done, tap “Stop Faking Location” to reset your location.</string>
-    <string name="onboarding_end_button">Get Started</string>
+    <string name="onboarding_end_button">Start Using Fackla</string>
 
     <string name="onboarding_location_permission_dialog_title">Location access required</string>
     <string name="onboarding_location_permission_dialog_message">Access to your location is required for Fackla to function. Tap Manage then Permissions and allow Fackla to read your location.\n\nIf you don’t want to allow Fackla to read your location, do not use this app.</string>
