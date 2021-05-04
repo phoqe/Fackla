@@ -123,7 +123,9 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
                 .location(loc)
                 .build()
 
-        map.locationComponent.forceLocationUpdate(locUpd)
+        binding.mapView.getMapAsync { map ->
+            map.locationComponent.forceLocationUpdate(locUpd)
+        }
     }
 
     private fun showNoMockLocAppDialog() {
