@@ -3,9 +3,11 @@ package com.phoqe.fackla.activities
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.provider.Settings
 import androidx.fragment.app.FragmentActivity
 import androidx.preference.PreferenceManager
 import androidx.viewpager2.widget.ViewPager2
+import com.phoqe.fackla.BuildConfig
 import com.phoqe.fackla.adapters.OnboardingPagerAdapter
 import com.phoqe.fackla.databinding.ActivityOnboardingBinding
 import com.phoqe.fackla.fragments.*
@@ -22,16 +24,20 @@ class OnboardingActivity : FragmentActivity(),
 
     private var skipSaveProgress = false
 
-    private fun saveProgress(currentItem: Int = viewPager.currentItem) {
+    private fun saveProgress() {
         with(prefs.edit()) {
-            putInt("last_onboarding_item", currentItem)
+            putInt("last_onboarding_item", viewPager.currentItem + 1)
             apply()
         }
     }
 
-    private fun incrementPagerSilently() {
-        skipSaveProgress = true
-        saveProgress(viewPager.currentItem + 1)
+    private fun incrementPager(silently: Boolean = false) {
+        if (silently) {
+            skipSaveProgress = true
+            saveProgress()
+        } else {
+            viewPager.currentItem += 1
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +50,9 @@ class OnboardingActivity : FragmentActivity(),
 
         viewPager = binding.root
         viewPager.adapter = OnboardingPagerAdapter(this)
-        viewPager.isUserInputEnabled = false
+
+        // Developers can preview the Onboarding pages.
+        viewPager.isUserInputEnabled = BuildConfig.DEBUG
     }
 
     override fun onResume() {
@@ -78,14 +86,14 @@ class OnboardingActivity : FragmentActivity(),
     }
 
     override fun onSelectMockAppClick() {
-        incrementPagerSilently()
+        incrementPager(true)
     }
 
     override fun onBecomeDeveloperClick() {
-        incrementPagerSilently()
+        incrementPager(true)
     }
 
     override fun onGrantedPermission() {
-        viewPager.currentItem += 1
+        incrementPager()
     }
 }
