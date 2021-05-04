@@ -156,8 +156,8 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
         FakeLocationManager.getInstance(this).stop()
     }
 
-    @Subscribe(threadMode = ThreadMode.POSTING)
-    fun onFakeLocationManagerStartEvent(event: FakeLocationManagerStartEvent) {
+    @Subscribe(threadMode = ThreadMode.POSTING, sticky = true)
+    fun onFakeLocationManagerStart(event: FakeLocationManagerStartEvent) {
         isFakingLocation = true
 
         updateLocationPostStateChange(event.fakeLocation)
@@ -166,7 +166,7 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
     }
 
     @Subscribe(threadMode = ThreadMode.POSTING, sticky = true)
-    fun onFakeLocationManagerStopEvent(event: FakeLocationManagerStopEvent) {
+    fun onFakeLocationManagerStop(event: FakeLocationManagerStopEvent) {
         isFakingLocation = false
 
         lastLocBeforeFaking?.let { loc -> updateLocationPostStateChange(loc) }

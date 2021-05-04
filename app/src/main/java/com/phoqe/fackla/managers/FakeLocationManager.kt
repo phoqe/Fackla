@@ -101,7 +101,7 @@ class FakeLocationManager(private val context: Context) {
             apply()
         }
 
-        EventBus.getDefault().post(FakeLocationManagerStartEvent(fakeLocation))
+        EventBus.getDefault().postSticky(FakeLocationManagerStartEvent(fakeLocation))
 
         callback?.let { it(fakeLocation) }
     }
