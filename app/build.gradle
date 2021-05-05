@@ -14,16 +14,18 @@ android {
         applicationId "com.phoqe.fackla"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 1
+        versionCode 2
         versionName "1.0.0"
         multiDexEnabled true
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            debugSymbolLevel "FULL"
+        }
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
