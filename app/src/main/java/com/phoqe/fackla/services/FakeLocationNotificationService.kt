@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
+import com.phoqe.fackla.IntentAction
 import com.phoqe.fackla.activities.MainActivity
 import com.phoqe.fackla.R
 import com.phoqe.fackla.receivers.StopFakingLocationReceiver
@@ -17,7 +18,7 @@ class FakeLocationNotificationService: Service() {
 
     private fun createStopAction(): NotificationCompat.Action {
         val intent = Intent(this, StopFakingLocationReceiver::class.java).apply {
-            action = "com.phoqe.fackla.action.STOP_FAKING_LOCATION"
+            action = IntentAction.STOP_FAKING_LOCATION
         }
         val pendingIntent = PendingIntent.getBroadcast(
                 this,
@@ -66,8 +67,8 @@ class FakeLocationNotificationService: Service() {
         startForeground(notificationId, createNotification())
 
         val intents = arrayOf(
-                "com.samsung.android.location.mock.delete",
-                "com.phoqe.fackla.action.STOP_FAKING_LOCATION"
+            "com.samsung.android.location.mock.delete",
+            IntentAction.STOP_FAKING_LOCATION
         )
         val intentFilter = IntentFilter()
 
