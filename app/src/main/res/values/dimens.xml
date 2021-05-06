@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="mapbox_logo_margin">8dp</dimen>
-    <dimen name="mapbox_attr_margin">8dp</dimen>
-    <dimen name="mapbox_attr_margin_left">98dp</dimen>
+    <dimen name="mapbox_logo_margin">16dp</dimen>
+    <dimen name="mapbox_attr_margin">16dp</dimen>
+    <dimen name="mapbox_attr_margin_left">106dp</dimen>
 </resources>
