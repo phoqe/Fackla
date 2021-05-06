@@ -22,7 +22,6 @@ Navigating to Developer Options in the device’s settings will destroy the runn
 - `ACCESS_FINE_LOCATION`: Displaying the user’s position on the main map as well as setting test providers for the location manager. 
 - `ACCESS_COARSE_LOCATION`: Same as above.
 - `ACCESS_MOCK_LOCATION`: Allows the app to function as a mock location app, i.e. can be selected in the Developer Options of the device.
-- `ACCESS_BACKGROUND_LOCATION`: Allows the app to use a fake location in the background. 
 - `FOREGROUND_SERVICE`: The app starts a foreground service when the user changed their location.
 - `ACCESS_BOOT_COMPLETED`: Prior to device reboot, if the user was running the service it will start again. 
 
