@@ -68,8 +68,18 @@ class FakeLocationManager(private val context: Context) {
             setTestProviders()
 
             for (provider in testProviders) {
-                locMgr.setTestProviderLocation(provider, createFakeLocation(provider, point))
-                locMgr.setTestProviderEnabled(provider, true)
+                try {
+                    locMgr.setTestProviderLocation(provider, createFakeLocation(provider, point))
+                    locMgr.setTestProviderEnabled(provider, true)
+                } catch (ex: IllegalArgumentException) {
+                    Timber.e(ex, "Failed to set test provider location/enabled due to arguments.")
+
+                    continue
+                } catch (ex: SecurityException) {
+                    Timber.e(ex, "Failed to set test provider location/enabled due to mock location ops.")
+
+                    stop()
+                }
             }
 
             handler.postDelayed(runnable, 1000)
@@ -116,7 +126,17 @@ class FakeLocationManager(private val context: Context) {
         handler.removeCallbacks(runnable)
 
         for (provider in testProviders) {
-            locMgr.removeTestProvider(provider)
+            try {
+                locMgr.removeTestProvider(provider)
+            } catch (ex: IllegalArgumentException) {
+                Timber.e(ex, "Failed to remove test provider due to args.")
+
+                continue
+            } catch (ex: SecurityException) {
+                Timber.e(ex, "Failed to remove test provider due to mock location ops.")
+
+                continue
+            }
         }
 
         context.stopService(intent)
@@ -136,6 +156,24 @@ class FakeLocationManager(private val context: Context) {
     }
 
     /**
+     * Adds a test provider to the location manager.
+     */
+    private fun addTestProvider(provider: String) {
+        locMgr.addTestProvider(
+            provider,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            POWER_USAGE,
+            ACCURACY
+        )
+    }
+
+    /**
      * Sets up test providers for the fake location. The providers will be used to ultimately
      * set the fake location.
      */
@@ -144,20 +182,15 @@ class FakeLocationManager(private val context: Context) {
 
         for (provider in testProviders) {
             try {
-                locMgr.addTestProvider(
-                    provider,
-                    false,
-                    false,
-                    false,
-                    false,
-                    false,
-                    false,
-                    false,
-                    POWER_USAGE,
-                    ACCURACY
-                )
+                addTestProvider(provider)
             } catch (ex: IllegalArgumentException) {
+                Timber.e(ex, "Failed to add test provider due to args.")
+
                 continue
+            } catch (ex: SecurityException) {
+                Timber.e(ex, "Failed to add test provider due to mock location ops.")
+
+                stop()
             }
         }
     }
