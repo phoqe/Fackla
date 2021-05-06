@@ -37,22 +37,6 @@ class BootReceiver: BroadcastReceiver() {
 
         Timber.d("Intent Action supported.")
 
-        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-
-        if (prefs.getBoolean("fake_loc_service_active", false)) {
-            Timber.d("Fake Location Service was active prior to boot.")
-
-            val default = java.lang.Double.doubleToRawLongBits(0.0)
-            val lat = java.lang.Double.longBitsToDouble(prefs.getLong("fake_lat", default))
-            val long = java.lang.Double.longBitsToDouble(prefs.getLong("fake_long", default))
-            val alt = java.lang.Double.longBitsToDouble(prefs.getLong("fake_alt", default))
-            val point = LatLng(lat, long, alt)
-
-            Timber.d(point.toString())
-
-            FakeLocationManager.getInstance(context).start(point)
-        } else {
-            Timber.d("Fake Location Service wasn't active prior to boot.")
-        }
+        FakeLocationManager.getInstance(context).attemptStartFromPrefs()
     }
 }

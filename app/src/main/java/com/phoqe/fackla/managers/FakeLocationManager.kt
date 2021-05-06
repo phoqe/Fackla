@@ -58,6 +58,32 @@ class FakeLocationManager(private val context: Context) {
     }
 
     /**
+     * Performs a cold start using values from prefs. Useful when coming from a boot receiver or
+     * booting the app during the winter (lol).
+     */
+    fun attemptStartFromPrefs() {
+        Timber.v("attemptStartFromPrefs")
+
+        if (!prefs.getBoolean("fake_loc_service_active", false)) {
+            Timber.i("Fake Location Service wasn't active prior to boot.")
+
+            return
+        }
+
+        Timber.d("Fake Location Service was running prior to boot.")
+
+        val defaultCo = java.lang.Double.doubleToRawLongBits(0.0)
+        val lat = java.lang.Double.longBitsToDouble(prefs.getLong("fake_lat", defaultCo))
+        val long = java.lang.Double.longBitsToDouble(prefs.getLong("fake_long", defaultCo))
+        val alt = java.lang.Double.longBitsToDouble(prefs.getLong("fake_alt", defaultCo))
+        val point = LatLng(lat, long, alt)
+
+        Timber.d("Using point: ${point}.")
+
+        start(point)
+    }
+
+    /**
      * Starts the fake location manager by creating test providers and fake locations to be set using
      * the created providers. The [point] is used when creating the fake location.
      */
