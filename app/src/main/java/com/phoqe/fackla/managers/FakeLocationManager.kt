@@ -32,7 +32,10 @@ class FakeLocationManager(private val context: Context) {
             LocationManager
     private val prefs = PreferenceManager.getDefaultSharedPreferences(context)
     private val handler = Handler()
+
     private lateinit var runnable: Runnable
+
+    var isActive = false
 
     companion object {
         @SuppressLint("StaticFieldLeak")
@@ -121,6 +124,8 @@ class FakeLocationManager(private val context: Context) {
 
         val fakeLocation = createFakeLocation(testProviders.first(), point)
 
+        isActive = true
+
         with(prefs.edit()) {
             putBoolean("fake_loc_service_active", true)
 
@@ -166,6 +171,8 @@ class FakeLocationManager(private val context: Context) {
         }
 
         context.stopService(intent)
+
+        isActive = false
 
         with(prefs.edit()) {
             remove("fake_loc_service_active")

@@ -3,6 +3,7 @@ package com.phoqe.fackla.activities
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.location.Location
@@ -15,6 +16,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
+import androidx.preference.PreferenceManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.mapbox.android.core.permissions.PermissionsListener
@@ -42,12 +44,12 @@ import java.lang.NullPointerException
 class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLongClickListener {
     private var permsMgr: PermissionsManager = PermissionsManager(this)
     private var lastLocBeforeFaking: Location? = null
-    private var isFakingLocation = false
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var map: MapboxMap
     private lateinit var locMgr: LocationManager
     private lateinit var noPermsDialog: AlertDialog
+    private lateinit var prefs: SharedPreferences
 
     private fun hasPerms(): Boolean {
         return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
@@ -143,7 +145,7 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
     }
 
     private fun startFakingLocation(point: LatLng) {
-        if (!isFakingLocation && map.locationComponent.isLocationComponentActivated) {
+        if (!FakeLocationManager.getInstance(this).isActive && map.locationComponent.isLocationComponentActivated) {
             lastLocBeforeFaking = map.locationComponent.lastKnownLocation
         }
 
@@ -163,8 +165,6 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
     fun onFakeLocationManagerStart(event: FakeLocationManagerStartEvent) {
         EventBus.getDefault().removeStickyEvent(event)
 
-        isFakingLocation = true
-
         updateLocationPostStateChange(event.fakeLocation)
 
         binding.efabStopFakingLocation.visibility = View.VISIBLE
@@ -173,8 +173,6 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     fun onFakeLocationManagerStop(event: FakeLocationManagerStopEvent) {
         EventBus.getDefault().removeStickyEvent(event)
-
-        isFakingLocation = false
 
         lastLocBeforeFaking?.let { loc -> updateLocationPostStateChange(loc) }
 
@@ -199,6 +197,7 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
                     startActivity(intent)
                 }
                 .create()
+        prefs = PreferenceManager.getDefaultSharedPreferences(this)
 
         setContentView(binding.root)
 
@@ -250,6 +249,12 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
 
             binding.mapView.getMapAsync { map ->
                 map.style?.let { enableLocationComponent(it) }
+            }
+
+            if (FakeLocationManager.getInstance(this).isActive) {
+                binding.efabStopFakingLocation.visibility = View.VISIBLE
+            } else {
+                binding.efabStopFakingLocation.visibility = View.GONE
             }
         }
     }
