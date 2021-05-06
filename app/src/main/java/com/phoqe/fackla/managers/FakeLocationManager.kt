@@ -20,6 +20,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import timber.log.Timber
+import java.lang.IllegalArgumentException
 
 private const val POWER_USAGE = 1 // POWER_USAGE_LOW
 private const val ACCURACY = 1 // ACCURACY_FINE
@@ -142,7 +143,8 @@ class FakeLocationManager(private val context: Context) {
         Timber.v("addTestProvider")
 
         for (provider in testProviders) {
-            locMgr.addTestProvider(
+            try {
+                locMgr.addTestProvider(
                     provider,
                     false,
                     false,
@@ -153,7 +155,10 @@ class FakeLocationManager(private val context: Context) {
                     false,
                     POWER_USAGE,
                     ACCURACY
-            )
+                )
+            } catch (ex: IllegalArgumentException) {
+                continue
+            }
         }
     }
 
