@@ -29,11 +29,13 @@
 
         <activity
             android:name=".activities.OnboardingActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
 
         <activity
             android:name=".activities.MainActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
 
         <service
             android:name=".services.FakeLocationNotificationService"
@@ -43,7 +45,10 @@
             android:name=".receivers.StopFakingLocationReceiver"
             android:enabled="true" />
 
-        <receiver android:name=".receivers.BootReceiver" android:enabled="true" android:directBootAware="true"
+        <receiver
+            android:name=".receivers.BootReceiver"
+            android:enabled="true"
+            android:directBootAware="true"
             tools:ignore="UnusedAttribute">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
