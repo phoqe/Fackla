@@ -67,7 +67,7 @@ class FakeLocationNotificationService: Service() {
         startForeground(notificationId, createNotification())
 
         val intents = arrayOf(
-            "com.samsung.android.location.mock.delete",
+            IntentAction.SAMSUNG_LOCATION_MOCK_DELETE,
             IntentAction.STOP_FAKING_LOCATION
         )
         val intentFilter = IntentFilter()
