@@ -156,6 +156,7 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
 
     private fun stopFakingLocation() {
         FakeLocationManager.getInstance(this).stop()
+        lastLocBeforeFaking?.let { loc -> updateLocationPostStateChange(loc) }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
