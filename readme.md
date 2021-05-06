@@ -27,7 +27,24 @@ Navigating to Developer Options in the device’s settings will destroy the runn
 
 ## Building
 
-Building Fackla from source requires a Mapbox account as well as a secret access token. Visit the [Mapbox Installation Guide](https://docs.mapbox.com/android/maps/guides/install) for further instructions. You’ll need to add your secret access token in the `gradle.properties` file. It’s read from the project-level `build.gradle` file. Make sure to keep it *secret*.
+### Keystore
+
+You’ll need a `keystore.properties` file at the root of the project to build Fackla, it should looking something like:
+
+```
+storePassword=STORE_PASSWORD
+keyPassword=KEY_PASSWORD
+keyAlias=KEY_ALIAS
+storeFile=STORE_FILE
+```
+
+Fackla will use these properties when signing the AAB and APK (mainly for publishing the app via Google Play Store etc.).
+
+### Mapbox
+
+Visit the [Mapbox Installation Guide](https://docs.mapbox.com/android/maps/guides/install) for further instructions and to get a secret access token.
+You’ll need to add your secret access token in the `gradle.properties` file.
+It’s read from the project-level `build.gradle` file. Make sure to keep it **secret**.
 
 ## Usage
 
