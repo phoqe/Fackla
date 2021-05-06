@@ -160,6 +160,8 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     fun onFakeLocationManagerStart(event: FakeLocationManagerStartEvent) {
+        EventBus.getDefault().removeStickyEvent(event)
+
         isFakingLocation = true
 
         updateLocationPostStateChange(event.fakeLocation)
@@ -169,6 +171,8 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     fun onFakeLocationManagerStop(event: FakeLocationManagerStopEvent) {
+        EventBus.getDefault().removeStickyEvent(event)
+
         isFakingLocation = false
 
         lastLocBeforeFaking?.let { loc -> updateLocationPostStateChange(loc) }
