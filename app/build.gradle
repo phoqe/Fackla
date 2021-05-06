@@ -6,7 +6,21 @@ plugins {
     id "com.google.firebase.firebase-perf"
 }
 
+def ksPropsFile = rootProject.file("keystore.properties")
+def ksProps = new Properties()
+
+ksProps.load(new FileInputStream(ksPropsFile))
+
 android {
+    signingConfigs {
+        release {
+            keyAlias ksProps['keyAlias']
+            keyPassword ksProps['keyPassword']
+            storeFile file(ksProps['storeFile'])
+            storePassword ksProps['storePassword']
+        }
+    }
+
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
@@ -14,7 +28,7 @@ android {
         applicationId "com.phoqe.fackla"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 2
+        versionCode 3
         versionName "1.0.0"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -27,6 +41,7 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
 
