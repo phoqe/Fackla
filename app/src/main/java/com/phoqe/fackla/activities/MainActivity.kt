@@ -12,10 +12,12 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.util.TypedValue
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -71,10 +73,16 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
             this.map = map
 
             val ui = map.uiSettings
+            val logoMargin = resources.getDimension(R.dimen.mapbox_logo_margin).toInt()
+            val attrMargin = resources.getDimension(R.dimen.mapbox_attr_margin).toInt()
+            val attrMarginLeft = resources.getDimension(R.dimen.mapbox_attr_margin_left).toInt()
 
             ui.isCompassEnabled = false
-            ui.isLogoEnabled = false
-            ui.isAttributionEnabled = false
+            ui.isLogoEnabled = true
+            ui.isAttributionEnabled = true
+            ui.setAttributionTintColor(ContextCompat.getColor(this, R.color.primary_color))
+            ui.setLogoMargins(logoMargin, logoMargin, logoMargin, logoMargin)
+            ui.setAttributionMargins(attrMarginLeft, attrMargin, attrMargin, attrMargin)
 
             map.addOnMapLongClickListener(this)
             map.setStyle(getMapStyle()) {
