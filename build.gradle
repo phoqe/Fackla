@@ -1,3 +1,8 @@
+def credFile = rootProject.file("cred.properties")
+def credConfig = new Properties()
+
+credConfig.load(new FileInputStream(credFile))
+
 buildscript {
     ext.kotlin_version = "1.4.32"
     repositories {
@@ -5,7 +10,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.0'
+        classpath "com.android.tools.build:gradle:4.2.0"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "com.google.gms:google-services:4.3.5"
         classpath "com.google.firebase:firebase-crashlytics-gradle:2.5.2"
@@ -19,13 +24,13 @@ allprojects {
         jcenter()
 
         maven {
-            url 'https://api.mapbox.com/downloads/v2/releases/maven'
+            url "https://api.mapbox.com/downloads/v2/releases/maven"
             authentication {
                 basic(BasicAuthentication)
             }
             credentials {
-                username = 'mapbox'
-                password = project.properties['MAPBOX_DOWNLOADS_TOKEN'] ?: ""
+                username = "mapbox"
+                password = credConfig["MAPBOX_DOWNLOAD_TOKEN"] ?: ""
             }
         }
     }

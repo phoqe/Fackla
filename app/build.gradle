@@ -6,18 +6,18 @@ plugins {
     id "com.google.firebase.firebase-perf"
 }
 
-def ksPropsFile = rootProject.file("keystore.properties")
-def ksProps = new Properties()
+def credFile = rootProject.file("cred.properties")
+def credConfig = new Properties()
 
-ksProps.load(new FileInputStream(ksPropsFile))
+credConfig.load(new FileInputStream(credFile))
 
 android {
     signingConfigs {
         release {
-            keyAlias ksProps['keyAlias']
-            keyPassword ksProps['keyPassword']
-            storeFile file(ksProps['storeFile'])
-            storePassword ksProps['storePassword']
+            storeFile file(credConfig["STORE_FILE"])
+            storePassword credConfig["STORE_PASS"]
+            keyAlias credConfig["KEY_ALIAS"]
+            keyPassword credConfig["KEY_PASS"]
         }
     }
 
