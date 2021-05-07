@@ -65,6 +65,10 @@ Fackla isn’t a big project. The Mapbox account as well as the Google Play Deve
 When the Mapbox Search SDK for Android is out of beta, the notification content text could include the physical address for the virtual location’s coordinates.
 Including the Search SDK will require changing the minimum SDK version to 21. The current state of the SDK doesn’t yield accurate results, but that might change.
 
+### Google Assistant App Actions
+
+Would be cool to integrate Google Assistant in some way. Needs more research.
+
 ## Attribution
 
 Illustrations by [unDraw](https://undraw.co).
