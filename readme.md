@@ -56,7 +56,7 @@ Use **Issues** for any questions, problems, bugs, or feature requests. If you’
 
 ## Governance
 
-Fackla isn’t a big project. The Mapbox account as well as the Google Play Developer account is controlled by [@phoqe](https://github.com/phoqe). Everything else is in this repository.
+Fackla isn’t a big project. Mapbox, Google Play Developer, and Firebase is controlled by [@phoqe](https://github.com/phoqe). Everything else is in this repository.
 
 ## Future Improvements
 
