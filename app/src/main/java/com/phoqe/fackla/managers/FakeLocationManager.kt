@@ -24,6 +24,7 @@ import java.lang.IllegalArgumentException
 
 private const val POWER_USAGE = 1 // POWER_USAGE_LOW
 private const val ACCURACY = 1 // ACCURACY_FINE
+private const val PROVIDER_LOC_ENABLE_DELAY: Long = 1000
 
 class FakeLocationManager(private val context: Context) {
     private val testProviders = arrayOf(LocationManager.GPS_PROVIDER, LocationManager.NETWORK_PROVIDER)
@@ -111,7 +112,7 @@ class FakeLocationManager(private val context: Context) {
                 }
             }
 
-            handler.postDelayed(runnable, 1000)
+            handler.postDelayed(runnable, PROVIDER_LOC_ENABLE_DELAY)
         }
 
         handler.post(runnable)
