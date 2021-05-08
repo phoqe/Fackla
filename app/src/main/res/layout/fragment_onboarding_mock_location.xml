@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:padding="24dp"
+    android:paddingTop="24dp"
+    android:paddingHorizontal="24dp"
     android:orientation="vertical">
 
     <com.phoqe.fackla.components.EmptyState
@@ -15,16 +16,21 @@
         app:title="@string/onboarding_mock_location_title"
         app:body="@string/onboarding_mock_location_body" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_select_mock_loc_app"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/onboarding_mock_location_button" />
+        android:orientation="vertical"
+        android:layout_marginBottom="8dp"
+        android:layout_height="wrap_content">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_select_mock_loc_app"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/onboarding_mock_location_button" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-        android:text="@string/onboarding_mock_location_caption" />
-
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            android:text="@string/onboarding_mock_location_caption" />
+    </LinearLayout>
 </LinearLayout>

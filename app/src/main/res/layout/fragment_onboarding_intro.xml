@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp"
+    android:paddingTop="24dp"
+    android:paddingHorizontal="24dp"
     android:gravity="center">
 
     <com.phoqe.fackla.components.EmptyState
@@ -19,6 +20,6 @@
         android:id="@+id/btn_get_started"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:text="@string/onboarding_intro_button" />
-
 </LinearLayout>
