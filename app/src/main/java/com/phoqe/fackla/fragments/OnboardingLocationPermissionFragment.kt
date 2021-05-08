@@ -15,7 +15,6 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.phoqe.fackla.R
-import com.phoqe.fackla.activities.OnboardingActivity
 import com.phoqe.fackla.databinding.FragmentOnboardingLocationPermissionBinding
 
 class OnboardingLocationPermissionFragment() : Fragment() {
@@ -71,13 +70,14 @@ class OnboardingLocationPermissionFragment() : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        reqPermLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-            if (isGranted) {
-                listener?.onGrantedPermission()
-            } else {
-                showExplanationDialog()
+        reqPermLauncher =
+            registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+                if (isGranted) {
+                    listener?.onGrantedPermission()
+                } else {
+                    showExplanationDialog()
+                }
             }
-        }
     }
 
     override fun onCreateView(
