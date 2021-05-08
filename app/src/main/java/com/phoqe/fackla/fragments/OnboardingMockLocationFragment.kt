@@ -8,10 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.phoqe.fackla.databinding.FragmentOnboardingMockLocationBinding
 
-class OnboardingMockLocationFragment(private val listener: OnSelectMockAppClickListener) : Fragment() {
+class OnboardingMockLocationFragment() : Fragment() {
     interface OnSelectMockAppClickListener {
         fun onSelectMockAppClick()
     }
+
+    var listener: OnSelectMockAppClickListener? = null
 
     private var _binding: FragmentOnboardingMockLocationBinding? = null
     private val binding get() = _binding!!
@@ -25,7 +27,7 @@ class OnboardingMockLocationFragment(private val listener: OnSelectMockAppClickL
         binding.btnSelectMockLocApp.setOnClickListener {
             startActivity(Intent(android.provider.Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS))
 
-            listener.onSelectMockAppClick()
+            listener?.onSelectMockAppClick()
         }
 
         return binding.root

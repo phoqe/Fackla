@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.phoqe.fackla.databinding.FragmentOnboardingIntroBinding
 
-class OnboardingIntroFragment(private val listener: OnGetStartedClickListener) : Fragment() {
+class OnboardingIntroFragment() : Fragment() {
     interface OnGetStartedClickListener {
         fun onGetStartedClick()
     }
+
+    var listener: OnGetStartedClickListener? = null
 
     private var _binding: FragmentOnboardingIntroBinding? = null
     private val binding get() = _binding!!
@@ -22,7 +24,7 @@ class OnboardingIntroFragment(private val listener: OnGetStartedClickListener) :
         _binding = FragmentOnboardingIntroBinding.inflate(layoutInflater, container, false)
 
         binding.btnGetStarted.setOnClickListener {
-            listener.onGetStartedClick()
+            listener?.onGetStartedClick()
         }
 
         return binding.root

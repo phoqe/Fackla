@@ -20,10 +20,12 @@ import com.phoqe.fackla.R
 import com.phoqe.fackla.activities.OnboardingActivity
 import com.phoqe.fackla.databinding.FragmentOnboardingLocationPermissionBinding
 
-class OnboardingLocationPermissionFragment(private val activity: OnboardingActivity) : Fragment() {
+class OnboardingLocationPermissionFragment() : Fragment() {
     interface OnGrantedPermissionListener {
         fun onGrantedPermission()
     }
+
+    var listener: OnGrantedPermissionListener? = null
 
     private var _binding: FragmentOnboardingLocationPermissionBinding? = null
     private val binding get() = _binding!!
@@ -37,7 +39,7 @@ class OnboardingLocationPermissionFragment(private val activity: OnboardingActiv
                     requireContext(),
                     perm
             ) == PackageManager.PERMISSION_GRANTED -> {
-                activity.onGrantedPermission()
+                listener?.onGrantedPermission()
             }
             shouldShowRequestPermissionRationale(perm) -> {
                 showExplanationDialog()
@@ -73,7 +75,7 @@ class OnboardingLocationPermissionFragment(private val activity: OnboardingActiv
 
         reqPermLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (isGranted) {
-                activity.onGrantedPermission()
+                listener?.onGrantedPermission()
             } else {
                 showExplanationDialog()
             }

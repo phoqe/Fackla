@@ -8,10 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.phoqe.fackla.databinding.FragmentOnboardingDeveloperModeBinding
 
-class OnboardingDeveloperModeFragment(private val listener: OnBecomeDeveloperClickListener) : Fragment() {
+class OnboardingDeveloperModeFragment() : Fragment() {
     interface OnBecomeDeveloperClickListener {
         fun onBecomeDeveloperClick()
     }
+
+    var listener: OnBecomeDeveloperClickListener? = null
 
     private var _binding: FragmentOnboardingDeveloperModeBinding? = null
     private val binding get() = _binding!!
@@ -25,7 +27,7 @@ class OnboardingDeveloperModeFragment(private val listener: OnBecomeDeveloperCli
         binding.btnBecomeDeveloper.setOnClickListener {
             startActivity(Intent(android.provider.Settings.ACTION_DEVICE_INFO_SETTINGS))
 
-            listener.onBecomeDeveloperClick()
+            listener?.onBecomeDeveloperClick()
         }
 
         return binding.root

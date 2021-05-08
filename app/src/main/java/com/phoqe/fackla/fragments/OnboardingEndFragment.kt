@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.phoqe.fackla.databinding.FragmentOnboardingEndBinding
 
-class OnboardingEndFragment(private val listener: onStartClickListener) : Fragment() {
+class OnboardingEndFragment() : Fragment() {
     interface onStartClickListener {
         fun onStartClick()
     }
+
+    var listener: onStartClickListener? = null
 
     private var _binding: FragmentOnboardingEndBinding? = null
     private val binding get() = _binding!!
@@ -22,7 +24,7 @@ class OnboardingEndFragment(private val listener: onStartClickListener) : Fragme
         _binding = FragmentOnboardingEndBinding.inflate(layoutInflater, container, false)
 
         binding.btnStart.setOnClickListener {
-            listener.onStartClick()
+            listener?.onStartClick()
         }
 
         return binding.root

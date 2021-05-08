@@ -48,11 +48,17 @@ class OnboardingPagerAdapter(private val activity: OnboardingActivity) : Fragmen
         Timber.d("Position: ${position}")
         Timber.d("Item Count: ${itemCount}")
 
-        val introFragment = OnboardingIntroFragment(activity)
-        val devModeFragment = OnboardingDeveloperModeFragment(activity)
-        val mockLocationFragment = OnboardingMockLocationFragment(activity)
-        val endFragment = OnboardingEndFragment(activity)
-        val locPermFragment = OnboardingLocationPermissionFragment(activity)
+        val introFragment = OnboardingIntroFragment()
+        val devModeFragment = OnboardingDeveloperModeFragment()
+        val mockLocationFragment = OnboardingMockLocationFragment()
+        val endFragment = OnboardingEndFragment()
+        val locPermFragment = OnboardingLocationPermissionFragment()
+
+        introFragment.listener = activity
+        devModeFragment.listener = activity
+        mockLocationFragment.listener = activity
+        endFragment.listener = activity
+        locPermFragment.listener = activity
 
         return when (position) {
             0 -> introFragment
