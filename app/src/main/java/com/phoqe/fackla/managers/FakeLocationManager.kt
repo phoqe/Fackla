@@ -6,28 +6,22 @@ import android.content.Intent
 import android.location.Location
 import android.location.LocationManager
 import android.os.Handler
-import android.os.Looper
 import android.os.SystemClock
-import android.widget.Toast
 import androidx.preference.PreferenceManager
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.phoqe.fackla.events.FakeLocationManagerStartEvent
 import com.phoqe.fackla.events.FakeLocationManagerStopEvent
 import com.phoqe.fackla.services.FakeLocationNotificationService
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import timber.log.Timber
-import java.lang.IllegalArgumentException
 
 private const val POWER_USAGE = 1 // POWER_USAGE_LOW
 private const val ACCURACY = 1 // ACCURACY_FINE
 private const val PROVIDER_LOC_ENABLE_DELAY: Long = 1000
 
 class FakeLocationManager(private val context: Context) {
-    private val testProviders = arrayOf(LocationManager.GPS_PROVIDER, LocationManager.NETWORK_PROVIDER)
+    private val testProviders =
+        arrayOf(LocationManager.GPS_PROVIDER, LocationManager.NETWORK_PROVIDER)
     private val intent = Intent(context, FakeLocationNotificationService::class.java)
     private val locMgr = context.getSystemService(Context.LOCATION_SERVICE) as
             LocationManager
@@ -106,7 +100,10 @@ class FakeLocationManager(private val context: Context) {
 
                     continue
                 } catch (ex: SecurityException) {
-                    Timber.e(ex, "Failed to set test provider location/enabled due to mock location ops.")
+                    Timber.e(
+                        ex,
+                        "Failed to set test provider location/enabled due to mock location ops."
+                    )
 
                     stop()
                 }

@@ -2,13 +2,14 @@ package com.phoqe.fackla.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.phoqe.fackla.databinding.FragmentOnboardingDeveloperModeBinding
 
-class OnboardingDeveloperModeFragment(private val listener: OnBecomeDeveloperClickListener) : Fragment() {
+class OnboardingDeveloperModeFragment(private val listener: OnBecomeDeveloperClickListener) :
+    Fragment() {
     interface OnBecomeDeveloperClickListener {
         fun onBecomeDeveloperClick()
     }

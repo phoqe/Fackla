@@ -2,13 +2,14 @@ package com.phoqe.fackla.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.phoqe.fackla.databinding.FragmentOnboardingMockLocationBinding
 
-class OnboardingMockLocationFragment(private val listener: OnSelectMockAppClickListener) : Fragment() {
+class OnboardingMockLocationFragment(private val listener: OnSelectMockAppClickListener) :
+    Fragment() {
     interface OnSelectMockAppClickListener {
         fun onSelectMockAppClick()
     }

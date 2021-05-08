@@ -8,11 +8,11 @@ import android.content.IntentFilter
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import com.phoqe.fackla.IntentAction
-import com.phoqe.fackla.activities.MainActivity
 import com.phoqe.fackla.R
+import com.phoqe.fackla.activities.MainActivity
 import com.phoqe.fackla.receivers.StopFakingLocationReceiver
 
-class FakeLocationNotificationService: Service() {
+class FakeLocationNotificationService : Service() {
     private val notificationId = 1
     private val receiver = StopFakingLocationReceiver()
 
@@ -21,16 +21,16 @@ class FakeLocationNotificationService: Service() {
             action = IntentAction.STOP_FAKING_LOCATION
         }
         val pendingIntent = PendingIntent.getBroadcast(
-                this,
-                0,
-                intent,
-                0
+            this,
+            0,
+            intent,
+            0
         )
 
         return NotificationCompat.Action(
-                null,
-                getString(R.string.fake_location_notification_action_title),
-                pendingIntent
+            null,
+            getString(R.string.fake_location_notification_action_title),
+            pendingIntent
         )
     }
 

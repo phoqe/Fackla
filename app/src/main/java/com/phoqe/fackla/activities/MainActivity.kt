@@ -9,18 +9,15 @@ import android.content.res.Configuration
 import android.location.Location
 import android.location.LocationManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
-import android.util.TypedValue
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.mapboxsdk.geometry.LatLng
@@ -41,7 +38,6 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import timber.log.Timber
-import java.lang.NullPointerException
 
 class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLongClickListener {
     private var permsMgr: PermissionsManager = PermissionsManager(this)
@@ -54,8 +50,14 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
     private lateinit var prefs: SharedPreferences
 
     private fun hasPerms(): Boolean {
-        return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+        return ActivityCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
     }
 
     private fun getMapStyle(): String {
@@ -110,9 +112,10 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
         }
 
         val options = LocationComponentOptions.builder(this)
-                .build()
+            .build()
 
-        val activationOptions = LocationComponentActivationOptions.builder(this, fullyLoadedMapStyle)
+        val activationOptions =
+            LocationComponentActivationOptions.builder(this, fullyLoadedMapStyle)
                 .locationComponentOptions(options)
                 .build()
 
@@ -130,8 +133,8 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
 
     private fun updateLocationPostStateChange(loc: Location) {
         val locUpd = LocationUpdate.Builder()
-                .location(loc)
-                .build()
+            .location(loc)
+            .build()
 
         binding.mapView.getMapAsync { map ->
             map.locationComponent.forceLocationUpdate(locUpd)
@@ -140,16 +143,16 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
 
     private fun showNoMockLocAppDialog() {
         MaterialAlertDialogBuilder(this)
-                .setTitle(R.string.main_no_mock_loc_app_dialog_title)
-                .setMessage(R.string.main_no_mock_loc_app_message)
-                .setCancelable(false)
-                .setNegativeButton(R.string.main_no_loc_app_negative_button) { dialog, _ ->
-                    dialog.cancel()
-                }
-                .setPositiveButton(R.string.main_no_loc_app_positive_button) { _, _ ->
-                    startActivity(Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS))
-                }
-                .show()
+            .setTitle(R.string.main_no_mock_loc_app_dialog_title)
+            .setMessage(R.string.main_no_mock_loc_app_message)
+            .setCancelable(false)
+            .setNegativeButton(R.string.main_no_loc_app_negative_button) { dialog, _ ->
+                dialog.cancel()
+            }
+            .setPositiveButton(R.string.main_no_loc_app_positive_button) { _, _ ->
+                startActivity(Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS))
+            }
+            .show()
     }
 
     private fun startFakingLocation(point: LatLng) {
@@ -193,18 +196,18 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
         binding = ActivityMainBinding.inflate(layoutInflater)
         locMgr = getSystemService(LOCATION_SERVICE) as LocationManager
         noPermsDialog = MaterialAlertDialogBuilder(this)
-                .setTitle(R.string.main_no_perms_dialog_title)
-                .setMessage(R.string.main_no_perms_dialog_message)
-                .setCancelable(false)
-                .setPositiveButton(R.string.main_no_perms_dialog_positive_button) { dialog, _ ->
-                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                    val data = Uri.fromParts("package", packageName, null)
+            .setTitle(R.string.main_no_perms_dialog_title)
+            .setMessage(R.string.main_no_perms_dialog_message)
+            .setCancelable(false)
+            .setPositiveButton(R.string.main_no_perms_dialog_positive_button) { _dialog, _ ->
+                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                val data = Uri.fromParts("package", packageName, null)
 
-                    intent.setData(data)
+                intent.data = data
 
-                    startActivity(intent)
-                }
-                .create()
+                startActivity(intent)
+            }
+            .create()
         prefs = PreferenceManager.getDefaultSharedPreferences(this)
 
         setContentView(binding.root)
@@ -216,7 +219,11 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
         configMapView(savedInstanceState)
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
         permsMgr.onRequestPermissionsResult(requestCode, permissions, grantResults)

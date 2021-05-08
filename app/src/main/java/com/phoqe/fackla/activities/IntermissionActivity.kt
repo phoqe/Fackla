@@ -2,8 +2,8 @@ package com.phoqe.fackla.activities
 
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
 
 class IntermissionActivity : AppCompatActivity() {
