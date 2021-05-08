@@ -6,8 +6,26 @@ platform :android do
     end
 
     lane :internal do
-        gradle(task: "bundle", build_type: "release")
-        changelog_from_git_commits
-        upload_to_play_store(track: "internal", skip_upload_apk: true)
+        release(track: "internal")
+    end
+
+    lane :alpha do
+        release(track: "alpha")
+    end
+
+    lane :beta do
+        release(track: "beta")
+    end
+
+    lane :prod do
+        release(track: "production")
+    end
+
+    lane :release do |opts|
+        if opts[:track]
+            gradle(task: "bundle", build_type: "release")
+            changelog_from_git_commits
+            upload_to_play_store(track: opts[:track], skip_upload_apk: true)
+        end
     end
 end
