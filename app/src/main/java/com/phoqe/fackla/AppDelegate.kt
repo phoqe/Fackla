@@ -5,7 +5,7 @@ import com.mapbox.mapboxsdk.Mapbox
 import com.phoqe.fackla.registers.NotificationRegister
 import timber.log.Timber
 
-class AppDelegate: MultiDexApplication() {
+class AppDelegate : MultiDexApplication() {
     private lateinit var firebaseSession: FirebaseSession
     private lateinit var notificationRegister: NotificationRegister
 

@@ -3,12 +3,10 @@ package com.phoqe.fackla.receivers
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import androidx.preference.PreferenceManager
-import com.mapbox.mapboxsdk.geometry.LatLng
 import com.phoqe.fackla.managers.FakeLocationManager
 import timber.log.Timber
 
-class BootReceiver: BroadcastReceiver() {
+class BootReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         Timber.v("onReceive")
 

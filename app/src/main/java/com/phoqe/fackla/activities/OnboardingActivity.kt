@@ -3,7 +3,6 @@ package com.phoqe.fackla.activities
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.provider.Settings
 import androidx.fragment.app.FragmentActivity
 import androidx.preference.PreferenceManager
 import androidx.viewpager2.widget.ViewPager2
@@ -13,11 +12,11 @@ import com.phoqe.fackla.databinding.ActivityOnboardingBinding
 import com.phoqe.fackla.fragments.*
 
 class OnboardingActivity : FragmentActivity(),
-        OnboardingIntroFragment.OnGetStartedClickListener,
-        OnboardingDeveloperModeFragment.OnBecomeDeveloperClickListener,
-        OnboardingEndFragment.onStartClickListener,
-        OnboardingLocationPermissionFragment.OnGrantedPermissionListener,
-        OnboardingMockLocationFragment.OnSelectMockAppClickListener {
+    OnboardingIntroFragment.OnGetStartedClickListener,
+    OnboardingDeveloperModeFragment.OnBecomeDeveloperClickListener,
+    OnboardingEndFragment.onStartClickListener,
+    OnboardingLocationPermissionFragment.OnGrantedPermissionListener,
+    OnboardingMockLocationFragment.OnSelectMockAppClickListener {
     private lateinit var prefs: SharedPreferences
     private lateinit var binding: ActivityOnboardingBinding
     private lateinit var viewPager: ViewPager2

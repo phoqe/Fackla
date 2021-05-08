@@ -1,20 +1,18 @@
 package com.phoqe.fackla.fragments
 
 import android.Manifest
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import androidx.preference.PreferenceManager
+import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.phoqe.fackla.R
 import com.phoqe.fackla.activities.OnboardingActivity
@@ -36,8 +34,8 @@ class OnboardingLocationPermissionFragment() : Fragment() {
 
         when {
             ContextCompat.checkSelfPermission(
-                    requireContext(),
-                    perm
+                requireContext(),
+                perm
             ) == PackageManager.PERMISSION_GRANTED -> {
                 listener?.onGrantedPermission()
             }
@@ -53,20 +51,20 @@ class OnboardingLocationPermissionFragment() : Fragment() {
     private fun showExplanationDialog() {
         context?.let {
             MaterialAlertDialogBuilder(it)
-                    .setTitle(R.string.onboarding_location_permission_dialog_title)
-                    .setMessage(R.string.onboarding_location_permission_dialog_message)
-                    .setNegativeButton(getString(R.string.onboarding_location_permission_dialog_negative_button)) { dialog, which ->
-                        dialog.cancel()
-                    }
-                    .setPositiveButton(getString(R.string.onboarding_location_permission_dialog_positive_button)) { dialog, which ->
-                        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                        val data = Uri.fromParts("package", requireContext().packageName, null)
+                .setTitle(R.string.onboarding_location_permission_dialog_title)
+                .setMessage(R.string.onboarding_location_permission_dialog_message)
+                .setNegativeButton(getString(R.string.onboarding_location_permission_dialog_negative_button)) { dialog, _which ->
+                    dialog.cancel()
+                }
+                .setPositiveButton(getString(R.string.onboarding_location_permission_dialog_positive_button)) { _dialog, _which ->
+                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                    val data = Uri.fromParts("package", requireContext().packageName, null)
 
-                        intent.setData(data)
+                    intent.data = data
 
-                        startActivity(intent)
-                    }
-                    .show()
+                    startActivity(intent)
+                }
+                .show()
         }
     }
 
@@ -86,7 +84,8 @@ class OnboardingLocationPermissionFragment() : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentOnboardingLocationPermissionBinding.inflate(layoutInflater, container, false)
+        _binding =
+            FragmentOnboardingLocationPermissionBinding.inflate(layoutInflater, container, false)
 
         binding.btnReviewPermission.setOnClickListener {
             requestPermission()

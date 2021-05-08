@@ -14,7 +14,8 @@ class StopFakingLocationReceiver : BroadcastReceiver() {
         Timber.d(intent.toString())
 
         if (!intent.action.equals(IntentAction.SAMSUNG_LOCATION_MOCK_DELETE) &&
-                !intent.action.equals(IntentAction.STOP_FAKING_LOCATION)) {
+            !intent.action.equals(IntentAction.STOP_FAKING_LOCATION)
+        ) {
             Timber.e("Intent action not supported.")
 
             return
