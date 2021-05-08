@@ -199,7 +199,7 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
             .setTitle(R.string.main_no_perms_dialog_title)
             .setMessage(R.string.main_no_perms_dialog_message)
             .setCancelable(false)
-            .setPositiveButton(R.string.main_no_perms_dialog_positive_button) { _dialog, _ ->
+            .setPositiveButton(R.string.main_no_perms_dialog_positive_button) { _, _ ->
                 val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
                 val data = Uri.fromParts("package", packageName, null)
 

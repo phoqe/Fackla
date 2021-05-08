@@ -1,9 +1,13 @@
 default_platform(:android)
 
 platform :android do
-  lane :internal do
-    gradle(task: "bundle", build_type: "release")
-    changelog_from_git_commits
-    upload_to_play_store(track: "internal", skip_upload_apk: true)
-  end
+    lane :test do
+        gradle(task: "test")
+    end
+
+    lane :internal do
+        gradle(task: "bundle", build_type: "release")
+        changelog_from_git_commits
+        upload_to_play_store(track: "internal", skip_upload_apk: true)
+    end
 end
