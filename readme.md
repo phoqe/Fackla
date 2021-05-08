@@ -72,6 +72,8 @@ Including the Search SDK will require changing the minimum SDK version to 21. Th
 
 Would be cool to integrate Google Assistant in some way. Needs more research.
 
+### Widget
+
 ## Attribution
 
 Illustrations by [unDraw](https://undraw.co).
