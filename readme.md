@@ -4,11 +4,15 @@ Fackla is an open-source Android app written in Kotlin featuring mock locations 
 The project is more of a personal introduction to designing and building apps with Material Design and Kotlin than a real product.
 Feel free to interact with the project as per the open-source license.
 
+<a href="https://play.google.com/store/apps/details?id=com.phoqe.fackla&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
+  <img alt="Get it on Google Play" width="150" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png">
+</a>
+
 ## Screenshots
 
-<p align="center">
-  <img width="250" src="https://user-images.githubusercontent.com/7033377/117584365-cbb08800-b10c-11eb-97f2-64541ce39c2e.png">
-  <img width="250" src="https://user-images.githubusercontent.com/7033377/117584368-cc491e80-b10c-11eb-9fd1-ff021c6a3d68.png">
+<p>
+  <img width="200" src="https://user-images.githubusercontent.com/7033377/117584365-cbb08800-b10c-11eb-97f2-64541ce39c2e.png">
+  <img width="200" src="https://user-images.githubusercontent.com/7033377/117584368-cc491e80-b10c-11eb-9fd1-ff021c6a3d68.png">
 </p>
 
 ## Remarks
