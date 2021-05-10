@@ -4,16 +4,16 @@ Fackla is an open-source Android app written in Kotlin featuring mock locations 
 The project is more of a personal introduction to designing and building apps with Material Design and Kotlin than a real product.
 Feel free to interact with the project as per the open-source license.
 
-<a href="https://play.google.com/store/apps/details?id=com.phoqe.fackla&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
-  <img alt="Get it on Google Play" width="150" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png">
-</a>
-
-## Screenshots
-
-<p>
-  <img width="200" src="https://user-images.githubusercontent.com/7033377/117584365-cbb08800-b10c-11eb-97f2-64541ce39c2e.png">
-  <img width="200" src="https://user-images.githubusercontent.com/7033377/117584368-cc491e80-b10c-11eb-9fd1-ff021c6a3d68.png">
+<p align="center">
+  <a href="https://play.google.com/store/apps/details?id=com.phoqe.fackla&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
+    <img alt="Get it on Google Play" width="150" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png">
+  </a>
 </p>
+
+## Testing
+
+- [Alpha](https://play.google.com/apps/testing/com.phoqe.fackla)
+- [Beta](https://play.google.com/apps/testing/com.phoqe.fackla)
 
 ## Remarks
 
@@ -27,14 +27,6 @@ Navigating to Developer Options in the device’s settings will destroy the runn
 
 - Minimum SDK: 16
 - Target SDK: 30
-
-### Permissions
-
-- `ACCESS_FINE_LOCATION`: Displaying the user’s position on the main map as well as setting test providers for the location manager. 
-- `ACCESS_COARSE_LOCATION`: Same as above.
-- `ACCESS_MOCK_LOCATION`: Allows the app to function as a mock location app, i.e. can be selected in the Developer Options of the device.
-- `FOREGROUND_SERVICE`: The app starts a foreground service when the user changed their location.
-- `ACCESS_BOOT_COMPLETED`: Prior to device reboot, if the user was running the service it will start again. 
 
 ## Building
 
@@ -60,17 +52,9 @@ Visit the [Mapbox Installation Guide](https://docs.mapbox.com/android/maps/guide
 You’ll need to add your secret access token in the `cred.properties` file.
 It’s read from the project-level `build.gradle` file. Make sure to keep it **secret**.
 
-## Usage
-
-Long press a point on the map to change your location to the point’s coordinates.
-
 ## Contributing
 
 Use **Issues** for any questions, problems, bugs, or feature requests. If you’ve already fixed something, submit a **Pull Request**. There is no style guide or anything resembling a Contributors Guide. Include what you deem necessary.
-
-## Governance
-
-Fackla isn’t a big project. Mapbox, Google Play Developer, and Firebase is controlled by [@phoqe](https://github.com/phoqe). Everything else is in this repository.
 
 ## Future Improvements
 
