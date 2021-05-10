@@ -3,7 +3,7 @@
 
     <string name="fake_location_channel_id" translatable="false">fake_location</string>
     <string name="fake_location_channel_name">Fake Location</string>
-    <string name="fake_location_channel_description">This type of notification allows the app to use a fake location, even in other apps.</string>
+    <string name="fake_location_channel_description">Allows you to use a fake location in all apps.</string>
 
     <string name="fake_location_notification_title">Fake Location</string>
     <string name="fake_location_notification_description">You’re using a fake location in all apps.</string>
