@@ -49,6 +49,7 @@ class OnboardingActivity : FragmentActivity(),
 
         viewPager = binding.root
         viewPager.adapter = OnboardingPagerAdapter(this)
+        viewPager.isUserInputEnabled = false
     }
 
     override fun onResume() {
