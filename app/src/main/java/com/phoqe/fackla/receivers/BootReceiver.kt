@@ -35,6 +35,12 @@ class BootReceiver : BroadcastReceiver() {
 
         Timber.d("Intent Action supported.")
 
+        if (!FakeLocationManager.getInstance(context).canManageTestProviders()) {
+            Timber.e("The Fake Location Manager couldn't manage test providers.")
+
+            return
+        }
+
         FakeLocationManager.getInstance(context).attemptStartFromPrefs()
     }
 }

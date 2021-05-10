@@ -7,6 +7,7 @@ import android.location.Location
 import android.location.LocationManager
 import android.os.Handler
 import android.os.SystemClock
+import android.util.Log
 import androidx.preference.PreferenceManager
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.phoqe.fackla.events.FakeLocationManagerStartEvent
@@ -53,6 +54,45 @@ class FakeLocationManager(private val context: Context) {
                 }
             }
         }
+    }
+
+    /**
+     * You can use this method to test whether Fackla can be used as a mock location app. The
+     * function tests whether it can manage test providers, which is a qualifier for begin a mock
+     * location app.
+     */
+    fun canManageTestProviders(): Boolean {
+        Timber.v("isMockLocationApp")
+
+        val provider = testProviders.random()
+
+        Timber.d("Using provider: $provider")
+
+        try {
+            Timber.d("Testing add test provider...")
+
+            addTestProvider(provider)
+        } catch (ex: SecurityException) {
+            Timber.e(ex, "Failed to add test provider.")
+
+            return false
+        }
+
+        Timber.d("Could add test provider. Need to remove now.")
+
+        try {
+            Timber.d("Removing test provider...")
+
+            locMgr.removeTestProvider(provider)
+        } catch (ex: SecurityException) {
+            Timber.e(ex, "Failed to remove test provider.")
+
+            return false
+        }
+
+        Timber.d("Could remove test provider. Now the user is ready.")
+
+        return true
     }
 
     /**

@@ -156,6 +156,12 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
     }
 
     private fun startFakingLocation(point: LatLng) {
+        if (!FakeLocationManager.getInstance(this).canManageTestProviders()) {
+            showNoMockLocAppDialog()
+
+            return
+        }
+
         if (!FakeLocationManager.getInstance(this).isActive && map.locationComponent.isLocationComponentActivated) {
             lastLocBeforeFaking = map.locationComponent.lastKnownLocation
         }
