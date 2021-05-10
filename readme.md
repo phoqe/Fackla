@@ -87,6 +87,8 @@ Would be cool to integrate Google Assistant in some way. Needs more research.
 
 ## Attribution
 
+Google Play and the Google Play logo are trademarks of Google LLC.
+
 Illustrations by [unDraw](https://undraw.co).
 
 ## License
