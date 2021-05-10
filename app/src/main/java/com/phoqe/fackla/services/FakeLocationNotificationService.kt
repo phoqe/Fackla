@@ -39,7 +39,7 @@ class FakeLocationNotificationService : Service() {
         val intent = Intent(this, MainActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
 
-        builder.setSmallIcon(R.mipmap.ic_launcher)
+        builder.setSmallIcon(R.drawable.ic_baseline_map_24)
         builder.priority = NotificationCompat.PRIORITY_MAX
         builder.setWhen(System.currentTimeMillis())
         builder.setContentTitle(getString(R.string.fake_location_notification_title))
