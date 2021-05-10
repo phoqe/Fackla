@@ -88,6 +88,6 @@ class FakeLocationNotificationService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)
 
-        return START_REDELIVER_INTENT
+        return START_STICKY
     }
 }
