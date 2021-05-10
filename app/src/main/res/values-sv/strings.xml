@@ -56,4 +56,9 @@
     <string name="main_no_perms_dialog_message">Tillgång till din plats krävs för att Fackla ska fungera. Tryck Hantera och sedan Behörigheter och tillåt Fackla att läsa din plats.\n\nOm du inte vill att Fackla ska läsa din plats, använd inte appen.</string>
     <string name="main_no_perms_dialog_positive_button">Hantera</string>
     <string name="main_no_perms_dialog_negative_button">Avbryt</string>
+
+    <string name="main_dev_mode_dialog_title">Slå på utvecklarläget</string>
+    <string name="main_dev_mode_dialog_message">För att ändra din plats med Fackla behöver du slå på utvecklarläget i din enhet. Tryck Hantera sedan hitta och tryck på Kompileringsnr sju gånger.</string>
+    <string name="main_dev_mode_dialog_negative_button">Avbryt</string>
+    <string name="main_dev_mode_dialog_positive_button">Hantera</string>
 </resources>

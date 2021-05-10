@@ -67,6 +67,22 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
         }
     }
 
+    private fun isDev(): Boolean {
+        return if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            Settings.Secure.getInt(
+                contentResolver,
+                Settings.Global.DEVELOPMENT_SETTINGS_ENABLED,
+                0
+            ) == 1
+        } else {
+            Settings.Secure.getInt(
+                contentResolver,
+                Settings.Secure.DEVELOPMENT_SETTINGS_ENABLED,
+                0
+            ) == 1
+        }
+    }
+
     private fun configMapView(savedInstanceState: Bundle?) {
         val mapView = binding.mapView
 
@@ -155,7 +171,27 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
             .show()
     }
 
+    private fun showDevModeDialog() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.main_dev_mode_dialog_title)
+            .setMessage(R.string.main_dev_mode_dialog_message)
+            .setCancelable(false)
+            .setNegativeButton(R.string.main_dev_mode_dialog_negative_button) { dialog, _ ->
+                dialog.cancel()
+            }
+            .setPositiveButton(R.string.main_dev_mode_dialog_positive_button) { _, _ ->
+                startActivity(Intent(Settings.ACTION_DEVICE_INFO_SETTINGS))
+            }
+            .show()
+    }
+
     private fun startFakingLocation(point: LatLng) {
+        if (!isDev()) {
+            showDevModeDialog()
+
+            return
+        }
+
         if (!FakeLocationManager.getInstance(this).canManageTestProviders()) {
             showNoMockLocAppDialog()
 

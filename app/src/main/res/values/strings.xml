@@ -58,4 +58,9 @@
     <string name="main_no_perms_dialog_message">Access to your location is required for Fackla to function. Tap Manage then Permissions and allow Fackla to read your location.\n\nIf you don’t want to allow Fackla to read your location, do not use this app.</string>
     <string name="main_no_perms_dialog_positive_button">Manage</string>
     <string name="main_no_perms_dialog_negative_button">Cancel</string>
+
+    <string name="main_dev_mode_dialog_title">Turn on Developer Mode</string>
+    <string name="main_dev_mode_dialog_message">Changing your location with Fackla requires turning on Developer Mode on your device. Tap Manage then find and tap Build Number seven times.</string>
+    <string name="main_dev_mode_dialog_negative_button">Cancel</string>
+    <string name="main_dev_mode_dialog_positive_button">Manage</string>
 </resources>
