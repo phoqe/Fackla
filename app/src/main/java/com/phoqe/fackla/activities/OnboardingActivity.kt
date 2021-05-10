@@ -49,9 +49,6 @@ class OnboardingActivity : FragmentActivity(),
 
         viewPager = binding.root
         viewPager.adapter = OnboardingPagerAdapter(this)
-
-        // Developers can preview the Onboarding pages.
-        viewPager.isUserInputEnabled = BuildConfig.DEBUG
     }
 
     override fun onResume() {

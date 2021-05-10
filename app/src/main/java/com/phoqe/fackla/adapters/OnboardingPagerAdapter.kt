@@ -45,8 +45,8 @@ class OnboardingPagerAdapter(private val activity: OnboardingActivity) :
 
     override fun createFragment(position: Int): Fragment {
         Timber.v("createFragment")
-        Timber.d("Position: ${position}")
-        Timber.d("Item Count: ${itemCount}")
+        Timber.d("Position: $position")
+        Timber.d("Item Count: $itemCount")
 
         val introFragment = OnboardingIntroFragment()
         val devModeFragment = OnboardingDeveloperModeFragment()
