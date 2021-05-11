@@ -49,6 +49,10 @@ class FakeLocationNotificationService : Service() {
         builder.setOngoing(true)
         builder.setContentIntent(pendingIntent)
         builder.addAction(createStopAction())
+        builder.setStyle(
+            NotificationCompat.BigTextStyle()
+                .bigText(getString(R.string.fake_location_notification_description))
+        )
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             builder.color = getColor(R.color.primary_color)
