@@ -42,6 +42,7 @@ android {
             applicationIdSuffix ".debug"
             versionNameSuffix " (Debug)"
             minifyEnabled false
+            pseudoLocalesEnabled true
         }
 
         release {
