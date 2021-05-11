@@ -7,7 +7,7 @@
 
     <string name="fake_location_notification_title">Fake Location</string>
     <string name="fake_location_notification_description">You’re using a fake location in all apps.</string>
-    <string name="fake_location_notification_action_title">Stop Faking Location</string>
+    <string name="fake_location_notification_action_title">Stop faking location</string>
 
     <string name="mapbox_access_token" translatable="false">pk.eyJ1IjoicGhvcWUiLCJhIjoiY2tua2V1dm1rMGFnODJ1bzA4aDAzbzVjNiJ9.qhP4X_XpdzIPsHawKbJAKQ</string>
     <string name="on_explanation_needed_toast_text">Allow access to show your location on the map.</string>
