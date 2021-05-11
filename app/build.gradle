@@ -28,8 +28,8 @@ android {
         applicationId "com.phoqe.fackla"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 7
-        versionName "1.1.0"
+        versionCode 8
+        versionName "1.2.0"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         ndk {
