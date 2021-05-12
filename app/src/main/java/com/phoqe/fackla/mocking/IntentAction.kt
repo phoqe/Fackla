@@ -1,4 +1,4 @@
-package com.phoqe.fackla
+package com.phoqe.fackla.mocking
 
 object IntentAction {
     const val STOP_FAKING_LOCATION = "com.phoqe.fackla.action.STOP_FAKING_LOCATION"
