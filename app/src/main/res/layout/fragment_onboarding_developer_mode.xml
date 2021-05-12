@@ -8,7 +8,7 @@
     android:paddingHorizontal="24dp"
     android:orientation="vertical">
 
-    <com.phoqe.fackla.components.EmptyState
+    <com.phoqe.fackla.ui.component.EmptyState
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

@@ -1,4 +1,4 @@
-package com.phoqe.fackla.registers
+package com.phoqe.fackla
 
 import android.app.Notification
 import android.app.NotificationChannel

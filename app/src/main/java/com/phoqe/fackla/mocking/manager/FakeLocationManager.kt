@@ -1,4 +1,4 @@
-package com.phoqe.fackla.managers
+package com.phoqe.fackla.mocking.manager
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -7,12 +7,11 @@ import android.location.Location
 import android.location.LocationManager
 import android.os.Handler
 import android.os.SystemClock
-import android.util.Log
 import androidx.preference.PreferenceManager
 import com.mapbox.mapboxsdk.geometry.LatLng
-import com.phoqe.fackla.events.FakeLocationManagerStartEvent
-import com.phoqe.fackla.events.FakeLocationManagerStopEvent
-import com.phoqe.fackla.services.FakeLocationNotificationService
+import com.phoqe.fackla.ipc.event.FakeLocationManagerStartEvent
+import com.phoqe.fackla.ipc.event.FakeLocationManagerStopEvent
+import com.phoqe.fackla.mocking.service.FakeLocationNotificationService
 import org.greenrobot.eventbus.EventBus
 import timber.log.Timber
 

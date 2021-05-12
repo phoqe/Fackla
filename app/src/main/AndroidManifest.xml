@@ -23,7 +23,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Fackla">
-        <activity android:name=".activities.IntermissionActivity">
+        <activity android:name="com.phoqe.fackla.ui.activity.IntermissionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,26 +32,26 @@
         </activity>
 
         <activity
-            android:name=".activities.OnboardingActivity"
+            android:name="com.phoqe.fackla.ui.activity.OnboardingActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
 
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.phoqe.fackla.ui.activity.MainActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
 
         <service
-            android:name=".services.FakeLocationNotificationService"
+            android:name="com.phoqe.fackla.mocking.service.FakeLocationNotificationService"
             android:foregroundServiceType="location"
             android:enabled="true" />
 
         <receiver
-            android:name=".receivers.StopFakingLocationReceiver"
+            android:name="com.phoqe.fackla.mocking.receiver.StopFakingLocationReceiver"
             android:enabled="true" />
 
         <receiver
-            android:name=".receivers.BootReceiver"
+            android:name="com.phoqe.fackla.mocking.receiver.BootReceiver"
             android:enabled="true"
             android:directBootAware="true"
             tools:ignore="UnusedAttribute">

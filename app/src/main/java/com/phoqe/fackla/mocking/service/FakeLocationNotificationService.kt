@@ -1,4 +1,4 @@
-package com.phoqe.fackla.services
+package com.phoqe.fackla.mocking.service
 
 import android.app.Notification
 import android.app.PendingIntent
@@ -9,8 +9,8 @@ import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import com.phoqe.fackla.IntentAction
 import com.phoqe.fackla.R
-import com.phoqe.fackla.activities.MainActivity
-import com.phoqe.fackla.receivers.StopFakingLocationReceiver
+import com.phoqe.fackla.ui.activity.MainActivity
+import com.phoqe.fackla.mocking.receiver.StopFakingLocationReceiver
 
 class FakeLocationNotificationService : Service() {
     private val notificationId = 1

@@ -1,4 +1,4 @@
-package com.phoqe.fackla.components
+package com.phoqe.fackla.ui.component
 
 import android.content.Context
 import android.util.AttributeSet

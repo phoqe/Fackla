@@ -1,9 +1,9 @@
-package com.phoqe.fackla.receivers
+package com.phoqe.fackla.mocking.receiver
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import com.phoqe.fackla.managers.FakeLocationManager
+import com.phoqe.fackla.mocking.manager.FakeLocationManager
 import timber.log.Timber
 
 class BootReceiver : BroadcastReceiver() {

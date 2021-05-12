@@ -1,4 +1,4 @@
-package com.phoqe.fackla.activities
+package com.phoqe.fackla.ui.activity
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -6,10 +6,9 @@ import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import androidx.preference.PreferenceManager
 import androidx.viewpager2.widget.ViewPager2
-import com.phoqe.fackla.BuildConfig
-import com.phoqe.fackla.adapters.OnboardingPagerAdapter
+import com.phoqe.fackla.ui.adapter.OnboardingPagerAdapter
 import com.phoqe.fackla.databinding.ActivityOnboardingBinding
-import com.phoqe.fackla.fragments.*
+import com.phoqe.fackla.ui.fragment.*
 
 class OnboardingActivity : FragmentActivity(),
     OnboardingIntroFragment.OnGetStartedClickListener,

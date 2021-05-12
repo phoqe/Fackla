@@ -2,7 +2,6 @@ package com.phoqe.fackla
 
 import androidx.multidex.MultiDexApplication
 import com.mapbox.mapboxsdk.Mapbox
-import com.phoqe.fackla.registers.NotificationRegister
 import timber.log.Timber
 
 class AppDelegate : MultiDexApplication() {

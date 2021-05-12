@@ -1,4 +1,4 @@
-package com.phoqe.fackla.events
+package com.phoqe.fackla.ipc.event
 
 import android.location.Location
 

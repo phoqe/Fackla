@@ -1,4 +1,4 @@
-package com.phoqe.fackla.adapters
+package com.phoqe.fackla.ui.adapter
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -6,8 +6,8 @@ import android.provider.Settings
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.phoqe.fackla.activities.OnboardingActivity
-import com.phoqe.fackla.fragments.*
+import com.phoqe.fackla.ui.activity.OnboardingActivity
+import com.phoqe.fackla.ui.fragment.*
 import timber.log.Timber
 
 private const val ITEM_COUNT = 5

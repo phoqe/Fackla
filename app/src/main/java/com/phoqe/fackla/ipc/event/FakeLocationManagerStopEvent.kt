@@ -1,3 +1,3 @@
-package com.phoqe.fackla.events
+package com.phoqe.fackla.ipc.event
 
 class FakeLocationManagerStopEvent

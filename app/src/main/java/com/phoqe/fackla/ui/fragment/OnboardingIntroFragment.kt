@@ -1,4 +1,4 @@
-package com.phoqe.fackla.fragments
+package com.phoqe.fackla.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

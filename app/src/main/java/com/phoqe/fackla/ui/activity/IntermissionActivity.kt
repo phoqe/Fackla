@@ -1,4 +1,4 @@
-package com.phoqe.fackla.activities
+package com.phoqe.fackla.ui.activity
 
 import android.content.Intent
 import android.content.SharedPreferences

@@ -1,4 +1,4 @@
-package com.phoqe.fackla.activities
+package com.phoqe.fackla.ui.activity
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -31,9 +31,9 @@ import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.localization.LocalizationPlugin
 import com.phoqe.fackla.R
 import com.phoqe.fackla.databinding.ActivityMainBinding
-import com.phoqe.fackla.events.FakeLocationManagerStartEvent
-import com.phoqe.fackla.events.FakeLocationManagerStopEvent
-import com.phoqe.fackla.managers.FakeLocationManager
+import com.phoqe.fackla.ipc.event.FakeLocationManagerStartEvent
+import com.phoqe.fackla.ipc.event.FakeLocationManagerStopEvent
+import com.phoqe.fackla.mocking.manager.FakeLocationManager
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
