@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="EmptyState">
-        <attr name="illustration" format="reference" />
-        <attr name="content_description" format="string" />
+        <attr name="image" format="reference" />
+        <attr name="image_cd" format="string" />
         <attr name="title" format="string" />
         <attr name="body" format="string" />
     </declare-styleable>

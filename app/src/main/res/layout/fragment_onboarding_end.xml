@@ -12,9 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        app:illustration="@drawable/ic_undraw_map"
+        app:image="@drawable/ic_undraw_map"
         app:title="@string/onboarding_end_title"
-        app:content_description="@string/onboarding_end_empty_state_content_desc"
+        app:image_cd="@string/onboarding_end_empty_state_content_desc"
         app:body="@string/onboarding_end_body" />
 
     <com.google.android.material.button.MaterialButton

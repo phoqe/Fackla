@@ -14,8 +14,8 @@ class EmptyState @JvmOverloads constructor(
     init {
         context.theme.obtainStyledAttributes(attrs, R.styleable.EmptyState, 0, 0).apply {
             try {
-                binding.ivIllustration.setImageDrawable(getDrawable(R.styleable.EmptyState_illustration))
-                binding.ivIllustration.contentDescription = getString(R.styleable.EmptyState_content_description)
+                binding.ivImage.setImageDrawable(getDrawable(R.styleable.EmptyState_image))
+                binding.ivImage.contentDescription = getString(R.styleable.EmptyState_image_cd)
                 binding.tvTitle.text = getString(R.styleable.EmptyState_title)
                 binding.tvBody.text = getString(R.styleable.EmptyState_body)
             } finally {

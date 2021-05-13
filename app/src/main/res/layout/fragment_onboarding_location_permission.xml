@@ -12,9 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        app:illustration="@drawable/ic_undraw_my_current_location"
+        app:image="@drawable/ic_undraw_my_current_location"
         app:title="@string/onboarding_location_permission_title"
-        app:content_description="@string/onboarding_location_permission_empty_state_content_desc"
+        app:image_cd="@string/onboarding_location_permission_empty_state_content_desc"
         app:body="@string/onboarding_location_permission_body" />
 
     <LinearLayout

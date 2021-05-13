@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        app:illustration="@drawable/ic_undraw_my_location"
-        app:content_description="@string/onboarding_mock_location_content_desc"
+        app:image="@drawable/ic_undraw_my_location"
+        app:image_cd="@string/onboarding_mock_location_content_desc"
         app:title="@string/onboarding_mock_location_title"
         app:body="@string/onboarding_mock_location_body" />
 
