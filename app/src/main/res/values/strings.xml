@@ -63,4 +63,9 @@
     <string name="main_dev_mode_dialog_message">Changing your location with Fackla requires turning on Developer Mode on your device. Tap Manage then find and tap Build Number seven times.</string>
     <string name="main_dev_mode_dialog_negative_button">Cancel</string>
     <string name="main_dev_mode_dialog_positive_button">Manage</string>
+    <string name="onboarding_intro_empty_state_content_desc">A person next to a map with a highlighted location.</string>
+    <string name="onboarding_developer_mode_empty_state_content_desc">A woman changing options in a list.</string>
+    <string name="onboarding_end_empty_state_content_desc">A map with a highlighted location.</string>
+    <string name="onboarding_location_permission_empty_state_content_desc">A girl sitting on top of a highlighted location on a map.</string>
+    <string name="onboarding_mock_location_content_desc">A woman next to a phone containing a map with a highlighted location.</string>
 </resources>

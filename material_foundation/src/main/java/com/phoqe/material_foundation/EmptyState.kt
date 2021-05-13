@@ -1,10 +1,9 @@
-package com.phoqe.material_foundation.ui.component
+package com.phoqe.material_foundation
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import com.phoqe.material_foundation.R
 import com.phoqe.material_foundation.databinding.EmptyStateBinding
 
 class EmptyState @JvmOverloads constructor(

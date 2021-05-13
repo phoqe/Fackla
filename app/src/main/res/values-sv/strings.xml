@@ -61,4 +61,9 @@
     <string name="main_dev_mode_dialog_message">För att ändra din plats med Fackla behöver du slå på utvecklarläget i din enhet. Tryck Hantera sedan hitta och tryck på Kompileringsnr sju gånger.</string>
     <string name="main_dev_mode_dialog_negative_button">Avbryt</string>
     <string name="main_dev_mode_dialog_positive_button">Hantera</string>
+    <string name="onboarding_intro_empty_state_content_desc">En person bredvid en karta med en markerad plats.</string>
+    <string name="onboarding_developer_mode_empty_state_content_desc">En kvinna som ändrar alternativ i en lista.</string>
+    <string name="onboarding_end_empty_state_content_desc">En karta med en markerad plats.</string>
+    <string name="onboarding_location_permission_empty_state_content_desc">En flicka sittandes på en markerad plats på en karta.</string>
+    <string name="onboarding_mock_location_content_desc">En kvinna bredvid en telefon innehållande en karta med en markerad plats.</string>
 </resources>

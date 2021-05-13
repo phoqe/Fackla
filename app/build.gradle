@@ -95,6 +95,9 @@ dependencies {
     // LeakCanary
     debugImplementation "com.squareup.leakcanary:leakcanary-android:2.7"
 
+    // Material Foundation
+    implementation project(path: ":material_foundation")
+
     // Testing
     testImplementation "junit:junit:4.13.2"
     testImplementation "androidx.test:core:1.3.0"
