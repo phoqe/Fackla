@@ -1,2 +1,3 @@
 include ':app'
 rootProject.name = "Fackla"
+include ':material_foundation'
