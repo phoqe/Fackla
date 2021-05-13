@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="EmptyState">
+        <!-- Use a digital illustration or another type of Vector Asset for the best quality. -->
         <attr name="image" format="reference" />
+
+        <!-- Describe the actual contents of the provided image. -->
         <attr name="image_cd" format="string" />
+
+        <!-- For adherence to Material Design, use a sentence-style capitalization. -->
         <attr name="title" format="string" />
+
+        <!-- Expand on the title from here. -->
         <attr name="body" format="string" />
     </declare-styleable>
 </resources>
