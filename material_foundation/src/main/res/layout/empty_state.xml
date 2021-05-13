@@ -9,7 +9,9 @@
     <ImageView
         android:id="@+id/iv_illustration"
         android:layout_width="250dp"
+        tools:src="@drawable/ic_undraw_version_control"
         android:layout_height="200dp"
+        tools:contentDescription="Version Control Illustration"
         android:layout_marginBottom="32dp"
         tools:ignore="ContentDescription" />
 
@@ -25,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            tools:text="Stop your work from tracking you." />
+            tools:text="Stop your work from tracking you" />
 
         <ScrollView
             android:layout_width="wrap_content"
