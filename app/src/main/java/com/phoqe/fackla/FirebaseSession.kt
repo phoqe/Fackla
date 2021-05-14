@@ -9,9 +9,9 @@ import com.google.firebase.perf.FirebasePerformance
 import com.google.firebase.perf.ktx.performance
 
 class FirebaseSession {
-    val analytics: FirebaseAnalytics = Firebase.analytics
-    val crashlytics: FirebaseCrashlytics = Firebase.crashlytics
-    val performance: FirebasePerformance = Firebase.performance
+    private val analytics: FirebaseAnalytics = Firebase.analytics
+    private val crashlytics: FirebaseCrashlytics = Firebase.crashlytics
+    private val performance: FirebasePerformance = Firebase.performance
 
     init {
         analytics.setAnalyticsCollectionEnabled(!BuildConfig.DEBUG)
