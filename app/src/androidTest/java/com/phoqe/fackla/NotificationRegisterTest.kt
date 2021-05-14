@@ -15,7 +15,7 @@ class NotificationRegisterTest {
     private val manager = context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
     @Before
-    fun setUp() {
+    fun perms() {
         assertTrue(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
     }
 

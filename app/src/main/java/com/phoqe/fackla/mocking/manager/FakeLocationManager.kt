@@ -15,8 +15,8 @@ import com.phoqe.fackla.mocking.service.FakeLocationNotificationService
 import org.greenrobot.eventbus.EventBus
 import timber.log.Timber
 
-private const val POWER_USAGE = 1 // POWER_USAGE_LOW
 private const val ACCURACY = 1 // ACCURACY_FINE
+private const val POWER_USAGE = 1 // POWER_USAGE_LOW
 private const val PROVIDER_LOC_ENABLE_DELAY: Long = 1000
 
 class FakeLocationManager(private val context: Context) {
@@ -269,7 +269,7 @@ class FakeLocationManager(private val context: Context) {
      * Creates a fake [Location] object from the provided [point]. It can be used when using
      * [LocationManager.setTestProviderLocation].
      */
-    private fun createFakeLocation(provider: String, point: LatLng): Location {
+    internal fun createFakeLocation(provider: String, point: LatLng): Location {
         Timber.v("createFakeLocation")
 
         val loc = Location(provider)
