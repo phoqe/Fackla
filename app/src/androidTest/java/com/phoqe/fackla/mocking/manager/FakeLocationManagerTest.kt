@@ -1,20 +1,26 @@
 package com.phoqe.fackla.mocking.manager
 
+import android.content.Context
 import android.location.LocationManager
-import android.os.Looper
 import androidx.preference.PreferenceManager
 import androidx.test.platform.app.InstrumentationRegistry
 import com.mapbox.mapboxsdk.geometry.LatLng
-import org.junit.After
 import org.junit.Assert.*
-import org.junit.Before
 import org.junit.Test
 import timber.log.Timber
 
+private val TEST_POINTS = arrayOf(
+    LatLng(42.60896, -47.02990),
+    LatLng(26.82702, 142.72793),
+    LatLng(30.38004,  -47.76631),
+    LatLng(40.95261,  40.41502)
+)
+
 class FakeLocationManagerTest {
     private val context = InstrumentationRegistry.getInstrumentation().targetContext
-    private val manager = FakeLocationManager.getInstance(context)
+    private val fakeLocMgr = FakeLocationManager.getInstance(context)
     private val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+    private val locMgr = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
     private fun clearPrefs() {
         with(prefs.edit()) {
@@ -46,38 +52,58 @@ class FakeLocationManagerTest {
     fun startFromClearedPrefs() {
         clearPrefs()
 
-        manager.attemptStartFromPrefs()
+        fakeLocMgr.attemptStartFromPrefs()
 
-        assertFalse(manager.isActive)
+        assertFalse(fakeLocMgr.isActive)
     }
 
     @Test
     fun startFromFilledPrefs() {
         clearPrefs()
 
-        val point = LatLng(26.82702, 142.72793)
+        val point = TEST_POINTS.random()
 
         fillPrefs(point)
 
-        manager.attemptStartFromPrefs()
+        fakeLocMgr.attemptStartFromPrefs()
 
-        assertTrue(manager.isActive)
+        assertTrue(fakeLocMgr.isActive)
     }
 
     @Test
     fun start() {
-        val point = LatLng(42.60896, -47.02990)
+        val point = TEST_POINTS.random()
 
-        manager.start(point)
+        fakeLocMgr.start(point)
 
-        assertTrue(manager.isActive)
+        assertTrue(fakeLocMgr.isActive)
+    }
+
+    @Test
+    fun stop() {
+        fakeLocMgr.stop()
+
+        assertFalse(fakeLocMgr.isActive)
+    }
+
+    @Test
+    fun startStop() {
+        start()
+        stop()
+    }
+
+    @Test
+    fun addTestProviderGps() {
+        fakeLocMgr.addTestProvider(LocationManager.GPS_PROVIDER)
+
+        assertTrue(locMgr.allProviders.contains(LocationManager.GPS_PROVIDER))
     }
 
     @Test
     fun createFakeLocationGps() {
         val provider = LocationManager.GPS_PROVIDER
-        val point = LatLng(30.38004,  -47.76631)
-        val loc = manager.createFakeLocation(provider, point)
+        val point = TEST_POINTS.random()
+        val loc = fakeLocMgr.createFakeLocation(provider, point)
 
         assertNotNull(loc)
         assertEquals(loc.provider, provider)
@@ -89,8 +115,8 @@ class FakeLocationManagerTest {
     @Test
     fun createFakeLocationNetwork() {
         val provider = LocationManager.NETWORK_PROVIDER
-        val point = LatLng(40.95261,  40.41502)
-        val loc = manager.createFakeLocation(provider, point)
+        val point = TEST_POINTS.random()
+        val loc = fakeLocMgr.createFakeLocation(provider, point)
 
         assertNotNull(loc)
         assertEquals(loc.provider, provider)

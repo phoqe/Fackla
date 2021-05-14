@@ -228,7 +228,7 @@ class FakeLocationManager(private val context: Context) {
     /**
      * Adds a test provider to the location manager.
      */
-    private fun addTestProvider(provider: String) {
+    internal fun addTestProvider(provider: String) {
         locMgr.addTestProvider(
             provider,
             false,
