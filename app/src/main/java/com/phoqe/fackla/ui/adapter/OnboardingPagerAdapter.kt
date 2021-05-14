@@ -10,7 +10,7 @@ import com.phoqe.fackla.ui.activity.OnboardingActivity
 import com.phoqe.fackla.ui.fragment.*
 import timber.log.Timber
 
-private const val ITEM_COUNT = 5
+internal const val PAGER_ITEM_COUNT: Int = 5
 
 class OnboardingPagerAdapter(private val activity: OnboardingActivity) :
     FragmentStateAdapter(activity) {
@@ -40,7 +40,7 @@ class OnboardingPagerAdapter(private val activity: OnboardingActivity) :
     }
 
     override fun getItemCount(): Int {
-        return ITEM_COUNT
+        return PAGER_ITEM_COUNT
     }
 
     override fun createFragment(position: Int): Fragment {
