@@ -1,12 +1,14 @@
 package com.phoqe.fackla
 
+import android.os.Build
 import androidx.multidex.MultiDexApplication
 import com.mapbox.mapboxsdk.Mapbox
 import timber.log.Timber
 
 class AppDelegate : MultiDexApplication() {
     private lateinit var firebaseSession: FirebaseSession
-    private lateinit var notificationRegister: NotificationRegister
+
+    private var notificationRegister: NotificationRegister? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -16,7 +18,10 @@ class AppDelegate : MultiDexApplication() {
         }
 
         firebaseSession = FirebaseSession()
-        notificationRegister = NotificationRegister(this)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            notificationRegister = NotificationRegister(this)
+        }
 
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token))
     }
