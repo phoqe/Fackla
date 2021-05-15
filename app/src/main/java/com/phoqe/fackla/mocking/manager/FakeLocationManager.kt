@@ -46,7 +46,7 @@ class FakeLocationManager(private val context: Context) {
                 instance != null -> instance!!
                 else -> synchronized(this) {
                     if (instance == null) {
-                        instance = FakeLocationManager(context)
+                        instance = FakeLocationManager(context.applicationContext)
                     }
 
                     instance!!
