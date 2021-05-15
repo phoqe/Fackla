@@ -25,7 +25,6 @@ import org.junit.runner.RunWith
 @LargeTest
 @RunWith(AndroidJUnit4::class)
 class OnboardingActivityTest {
-
     @Rule
     @JvmField
     var activityRule = ActivityTestRule(OnboardingActivity::class.java)
