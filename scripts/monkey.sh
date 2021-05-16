@@ -1,1 +1,3 @@
-adb shell monkey -p com.phoqe.fackla -v 500
+ALLOWED_PACKAGE_NAME=com.phoqe.fackla
+
+adb shell monkey -p $ALLOWED_PACKAGE_NAME -v 500
