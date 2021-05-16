@@ -1,0 +1,1 @@
+adb shell monkey -p com.phoqe.fackla -v 500
