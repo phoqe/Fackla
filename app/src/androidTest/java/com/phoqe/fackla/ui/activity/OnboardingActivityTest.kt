@@ -160,7 +160,8 @@ class OnboardingActivityTest {
 
         val button2 = onView(
             allOf(
-                withId(R.id.btn_select_mock_loc_app), withText(R.string.onboarding_mock_location_button),
+                withId(R.id.btn_select_mock_loc_app),
+                withText(R.string.onboarding_mock_location_button),
                 withParent(withParent(IsInstanceOf.instanceOf(android.widget.LinearLayout::class.java))),
                 isDisplayed()
             )
@@ -187,7 +188,8 @@ class OnboardingActivityTest {
 
         val materialButton2 = onView(
             allOf(
-                withId(R.id.btn_select_mock_loc_app), withText(R.string.onboarding_mock_location_button),
+                withId(R.id.btn_select_mock_loc_app),
+                withText(R.string.onboarding_mock_location_button),
                 childAtPosition(
                     childAtPosition(
                         withClassName(`is`("android.widget.LinearLayout")),
@@ -250,7 +252,8 @@ class OnboardingActivityTest {
 
         val button3 = onView(
             allOf(
-                withId(R.id.btn_review_permission), withText(R.string.onboarding_location_permission_button),
+                withId(R.id.btn_review_permission),
+                withText(R.string.onboarding_location_permission_button),
                 withParent(withParent(IsInstanceOf.instanceOf(android.widget.LinearLayout::class.java))),
                 isDisplayed()
             )
@@ -277,7 +280,8 @@ class OnboardingActivityTest {
 
         val materialButton3 = onView(
             allOf(
-                withId(R.id.btn_review_permission), withText(R.string.onboarding_location_permission_button),
+                withId(R.id.btn_review_permission),
+                withText(R.string.onboarding_location_permission_button),
                 childAtPosition(
                     childAtPosition(
                         withClassName(`is`("android.widget.LinearLayout")),
@@ -292,7 +296,8 @@ class OnboardingActivityTest {
 
         val imageView4 = onView(
             allOf(
-                withId(R.id.iv_image), withContentDescription(R.string.onboarding_end_empty_state_content_desc),
+                withId(R.id.iv_image),
+                withContentDescription(R.string.onboarding_end_empty_state_content_desc),
                 withParent(withParent(IsInstanceOf.instanceOf(android.widget.LinearLayout::class.java))),
                 isDisplayed()
             )

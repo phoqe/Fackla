@@ -7,10 +7,10 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
-import com.phoqe.fackla.mocking.IntentAction
 import com.phoqe.fackla.R
-import com.phoqe.fackla.ui.activity.MainActivity
+import com.phoqe.fackla.mocking.IntentAction
 import com.phoqe.fackla.mocking.receiver.StopFakingLocationReceiver
+import com.phoqe.fackla.ui.activity.MainActivity
 
 class FakeLocationNotificationService : Service() {
     private val notificationId = 1
@@ -91,7 +91,7 @@ class FakeLocationNotificationService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)
-        
+
         return START_REDELIVER_INTENT
     }
 }

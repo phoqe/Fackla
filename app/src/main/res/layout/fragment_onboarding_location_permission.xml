@@ -4,24 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:paddingTop="24dp"
+    android:orientation="vertical"
     android:paddingHorizontal="24dp"
-    android:orientation="vertical">
+    android:paddingTop="24dp">
 
     <com.phoqe.material_foundation.EmptyState
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        app:body="@string/onboarding_location_permission_body"
         app:image="@drawable/ic_undraw_my_current_location"
-        app:title="@string/onboarding_location_permission_title"
         app:image_cd="@string/onboarding_location_permission_empty_state_content_desc"
-        app:body="@string/onboarding_location_permission_body" />
+        app:title="@string/onboarding_location_permission_title" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:layout_height="wrap_content">
+        android:orientation="vertical">
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_review_permission"
             android:layout_width="match_parent"
@@ -31,7 +32,7 @@
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-            android:text="@string/onboarding_location_permission_caption" />
+            android:text="@string/onboarding_location_permission_caption"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
     </LinearLayout>
 </LinearLayout>

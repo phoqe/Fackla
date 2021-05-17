@@ -6,8 +6,8 @@ import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import androidx.preference.PreferenceManager
 import androidx.viewpager2.widget.ViewPager2
-import com.phoqe.fackla.ui.adapter.OnboardingPagerAdapter
 import com.phoqe.fackla.databinding.ActivityOnboardingBinding
+import com.phoqe.fackla.ui.adapter.OnboardingPagerAdapter
 import com.phoqe.fackla.ui.fragment.*
 
 class OnboardingActivity : FragmentActivity(),

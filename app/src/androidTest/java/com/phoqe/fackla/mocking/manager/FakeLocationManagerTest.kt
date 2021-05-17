@@ -12,8 +12,8 @@ import timber.log.Timber
 private val TEST_POINTS = arrayOf(
     LatLng(42.60896, -47.02990),
     LatLng(26.82702, 142.72793),
-    LatLng(30.38004,  -47.76631),
-    LatLng(40.95261,  40.41502)
+    LatLng(30.38004, -47.76631),
+    LatLng(40.95261, 40.41502)
 )
 
 class FakeLocationManagerTest {

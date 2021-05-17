@@ -2,9 +2,8 @@ package com.phoqe.fackla.ui.adapter
 
 import com.phoqe.fackla.ui.activity.OnboardingActivity
 import com.phoqe.fackla.ui.fragment.*
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 
 class OnboardingPagerAdapterTest {
     val activity = OnboardingActivity()

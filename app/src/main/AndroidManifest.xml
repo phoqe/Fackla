@@ -11,8 +11,12 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
-    <uses-feature android:name="android.hardware.location" android:required="true" />
-    <uses-feature android:name="android.hardware.screen.portrait" android:required="true" />
+    <uses-feature
+        android:name="android.hardware.location"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.screen.portrait"
+        android:required="true" />
 
     <application
         android:name=".AppDelegate"
@@ -43,8 +47,8 @@
 
         <service
             android:name="com.phoqe.fackla.mocking.service.FakeLocationNotificationService"
-            android:foregroundServiceType="location"
-            android:enabled="true" />
+            android:enabled="true"
+            android:foregroundServiceType="location" />
 
         <receiver
             android:name="com.phoqe.fackla.mocking.receiver.StopFakingLocationReceiver"
@@ -52,8 +56,8 @@
 
         <receiver
             android:name="com.phoqe.fackla.mocking.receiver.BootReceiver"
-            android:enabled="true"
             android:directBootAware="true"
+            android:enabled="true"
             tools:ignore="UnusedAttribute">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

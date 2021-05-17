@@ -1,9 +1,8 @@
 package com.phoqe.fackla
 
 import com.mapbox.mapboxsdk.Mapbox
-import org.junit.Test
-
 import org.junit.Assert.*
+import org.junit.Test
 import timber.log.Timber
 
 class AppDelegateTest {
