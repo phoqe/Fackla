@@ -35,7 +35,7 @@ class NotificationRegister(private val context: Context) {
         )
 
         channel.description = context.getString(R.string.fake_location_channel_description)
-        channel.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
+        channel.lockscreenVisibility = Notification.VISIBILITY_SECRET
 
         manager.createNotificationChannel(channel)
     }

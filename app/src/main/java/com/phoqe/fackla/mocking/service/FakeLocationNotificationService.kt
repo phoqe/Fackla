@@ -47,6 +47,7 @@ class FakeLocationNotificationService : Service() {
         builder.setLocalOnly(true)
         builder.setCategory(NotificationCompat.CATEGORY_SERVICE)
         builder.setOngoing(true)
+        builder.setVisibility(NotificationCompat.VISIBILITY_SECRET)
         builder.setContentIntent(pendingIntent)
         builder.addAction(createStopAction())
         builder.setStyle(
