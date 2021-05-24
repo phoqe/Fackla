@@ -91,6 +91,7 @@ dependencies {
     implementation "com.google.firebase:firebase-analytics-ktx"
     implementation "com.google.firebase:firebase-crashlytics-ktx"
     implementation "com.google.firebase:firebase-perf-ktx"
+    implementation "com.google.firebase:firebase-appcheck-safetynet:16.0.0-beta01"
 
     // LeakCanary
     debugImplementation "com.squareup.leakcanary:leakcanary-android:2.7"
