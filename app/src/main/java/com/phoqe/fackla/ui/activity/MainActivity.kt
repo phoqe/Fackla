@@ -128,11 +128,13 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
         }
 
         val options = LocationComponentOptions.builder(this)
+            .trackingAnimationDurationMultiplier(0f)
             .build()
 
         val activationOptions =
             LocationComponentActivationOptions.builder(this, fullyLoadedMapStyle)
                 .locationComponentOptions(options)
+                .useSpecializedLocationLayer(true)
                 .build()
 
         map.locationComponent.apply {
