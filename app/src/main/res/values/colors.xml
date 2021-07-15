@@ -9,4 +9,5 @@
     <color name="primary_text_color">#ffffff</color>
     <color name="secondary_text_color">#ffffff</color>
     <color name="ic_launcher_background">#827717</color>
+    <color name="mapbox_attribution_tint_color">#808080</color>
 </resources>

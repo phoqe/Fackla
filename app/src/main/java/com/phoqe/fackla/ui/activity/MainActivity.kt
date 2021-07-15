@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity(), PermissionsListener, MapboxMap.OnMapLo
             ui.isCompassEnabled = false
             ui.isLogoEnabled = true
             ui.isAttributionEnabled = true
-            ui.setAttributionTintColor(ContextCompat.getColor(this, R.color.primary_color))
+            ui.setAttributionTintColor(ContextCompat.getColor(this, R.color.mapbox_attribution_tint_color))
             ui.setLogoMargins(logoMargin, logoMargin, logoMargin, logoMargin)
             ui.setAttributionMargins(attrMarginLeft, attrMargin, attrMargin, attrMargin)
 
